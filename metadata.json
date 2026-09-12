@@ -1,0 +1,6 @@
+{
+  "name": "FindBack",
+  "description": "Lost and found web application to report, search, and recover lost items",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

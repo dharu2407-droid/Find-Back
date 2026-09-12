@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>FindBack - Register</title>
+  <meta name="description" content="Lost and found web application to report, search, and recover lost items">
+  <meta property="og:title" content="FindBack - Register">
+  <meta property="og:description" content="Lost and found web application to report, search, and recover lost items">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #faf9ff;
+      min-height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: #17141f;
+    }
+
+    .register-box {
+      width: 400px;
+
+      background: white;
+
+      padding: 35px;
+
+      border-radius: 18px;
+
+      border: 1px solid #e9e4f2;
+
+      box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo h1 {
+      color: #6d28d9;
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .logo p {
+      color: #6b6475;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+
+      padding: 14px;
+
+      margin-bottom: 15px;
+
+      border: 1px solid #d8d0e3;
+
+      border-radius: 9px;
+
+      font-size: 15px;
+    }
+
+    input:focus {
+      outline: 2px solid #8b5cf6;
+      border-color: #8b5cf6;
+    }
+
+    button {
+      width: 100%;
+
+      padding: 14px;
+
+      border: none;
+
+      border-radius: 9px;
+
+      background: #6d28d9;
+
+      color: white;
+
+      font-size: 16px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #5b21b6;
+    }
+
+    .message {
+      margin-top: 15px;
+
+      padding: 12px;
+
+      border-radius: 8px;
+
+      text-align: center;
+
+      display: none;
+    }
+
+    .login-link {
+      text-align: center;
+
+      margin-top: 20px;
+
+      color: #6b6475;
+    }
+
+    .login-link a {
+      color: #6d28d9;
+
+      font-weight: bold;
+
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="register-box" id="registerCard">
+
+    <div class="logo" id="registerLogo">
+
+      <h1>FindBack</h1>
+
+      <p>
+        Lost something? Let's find it back.
+      </p>
+
+    </div>
+
+    <h2>Create Account</h2>
+
+    <form id="registerForm">
+
+      <input
+        type="text"
+        id="name"
+        placeholder="Your full name"
+        autocomplete="name"
+        required
+      >
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Your email address"
+        autocomplete="email"
+        required
+      >
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Create a password (min 6 chars)"
+        autocomplete="new-password"
+        minlength="6"
+        required
+      >
+
+      <button type="submit" id="registerSubmitBtn">
+        Create Account
+      </button>
+
+    </form>
+
+    <div
+      id="message"
+      class="message"
+    ></div>
+
+    <div class="login-link" id="loginPrompt">
+
+      Already have an account?
+
+      <a href="/" id="signInLink">
+        Login
+      </a>
+
+    </div>
+
+  </div>
+
+<script>
+
+document
+  .getElementById("registerForm")
+  .addEventListener(
+    "submit",
+    async function(event) {
+
+      event.preventDefault();
+
+      const message =
+        document.getElementById("message");
+      const submitBtn =
+        document.getElementById("registerSubmitBtn");
+
+      message.style.display = "block";
+      message.style.background = "#ede9fe";
+      message.style.color = "#6d28d9";
+      message.textContent = "Creating your account...";
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Creating Account...";
+
+      const data = {
+        name:
+          document
+            .getElementById("name")
+            .value
+            .trim(),
+        email:
+          document
+            .getElementById("email")
+            .value
+            .trim(),
+        password:
+          document
+            .getElementById("password")
+            .value
+      };
+
+      async function safeParseJson(res) {
+        if (!res) return null;
+        try {
+          const text = await res.text();
+          if (!text || text.trim() === "") return null;
+          return JSON.parse(text);
+        } catch (e) {
+          return null;
+        }
+      }
+
+      try {
+        const response = await fetch("/api/auth/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await safeParseJson(response);
+
+        if (response.ok && result) {
+          if (result.token) {
+            localStorage.setItem("findbackToken", result.token);
+          }
+          if (result.user) {
+            localStorage.setItem("findbackUser", JSON.stringify(result.user));
+          }
+
+          message.textContent = "Registration successful! Redirecting to dashboard...";
+          message.style.background = "#ede9fe";
+          message.style.color = "#6d28d9";
+
+          document.getElementById("registerForm").reset();
+
+          setTimeout(function() {
+            window.location.href = "/home.html";
+          }, 700);
+        } else {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Create Account";
+          message.textContent = (result && result.message) ? result.message : "Registration failed. Please try again.";
+          message.style.background = "#fee2e2";
+          message.style.color = "#991b1b";
+        }
+      } catch (error) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Create Account";
+        message.textContent = "Unable to connect to server. Please try again.";
+        message.style.background = "#fee2e2";
+        message.style.color = "#991b1b";
+      }
+    }
+  );
+
+</script>
+
+</body>
+</html>

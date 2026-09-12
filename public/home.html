@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FindBack - Community Lost & Found</title>
+  <meta name="description" content="Community lost and found platform with Instagram-style photo posts">
+  <meta property="og:title" content="FindBack - Community Lost & Found">
+  <meta property="og:description" content="Community lost and found platform with Instagram-style photo posts">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #faf8fd;
+      color: #1a1721;
+      line-height: 1.5;
+    }
+
+    /* TOP NAVBAR */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e9e4f0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #1a1721;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      font-weight: 800;
+      box-shadow: 0 4px 10px rgba(124, 58, 237, 0.25);
+    }
+
+    .brand-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #6d28d9, #db2777);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: #f3effb;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #5b21b6;
+    }
+
+    .user-pill-dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+    }
+
+    .btn-create-post {
+      background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: none;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+    }
+
+    .btn-create-post:hover {
+      opacity: 0.95;
+    }
+
+    .btn-logout {
+      background: #f1f0f5;
+      color: #5b5568;
+      border: 1px solid #e2dfea;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .btn-logout:hover {
+      background: #e6e4ee;
+      color: #1a1721;
+    }
+
+    /* MAIN CONTAINER */
+    main {
+      max-width: 680px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    /* HERO BANNER */
+    .hero-banner {
+      background: linear-gradient(135deg, #f5f0ff 0%, #fdf2f8 100%);
+      border: 1px solid #e9dcfc;
+      border-radius: 16px;
+      padding: 22px 24px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .hero-text h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #2e1065;
+      margin-bottom: 4px;
+    }
+
+    .hero-text p {
+      font-size: 13px;
+      color: #6b5c82;
+    }
+
+    .hero-action-btn {
+      background: #7c3aed;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: none;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .hero-action-btn:hover {
+      background: #6d28d9;
+    }
+
+    /* POST CREATOR CARD */
+    .post-composer-card {
+      background: white;
+      border: 1px solid #e6e1ee;
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.04);
+    }
+
+    .composer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f1edf7;
+    }
+
+    .composer-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #2e1065;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-full {
+      grid-column: 1 / -1;
+    }
+
+    .input-field,
+    .select-field,
+    .textarea-field {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid #e0d9eb;
+      border-radius: 10px;
+      font-size: 14px;
+      outline: none;
+      background: #fff;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    .input-field:focus,
+    .select-field:focus,
+    .textarea-field:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .textarea-field {
+      min-height: 85px;
+      resize: vertical;
+    }
+
+    /* INSTAGRAM PHOTO DROPZONE */
+    .photo-dropzone {
+      border: 2px dashed #c4b5fd;
+      background: #faf8ff;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .photo-dropzone:hover {
+      background: #f5f0ff;
+      border-color: #8b5cf6;
+    }
+
+    .photo-dropzone input[type="file"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .dropzone-icon {
+      font-size: 32px;
+      margin-bottom: 6px;
+    }
+
+    .dropzone-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #5b21b6;
+      margin-bottom: 4px;
+    }
+
+    .dropzone-sub {
+      font-size: 12px;
+      color: #7c728a;
+    }
+
+    /* LIVE PHOTO PREVIEW */
+    .image-preview-container {
+      display: none;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #111;
+      aspect-ratio: 4 / 3;
+      max-height: 320px;
+      margin-top: 10px;
+    }
+
+    .image-preview-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .preview-remove-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+
+    .preview-remove-btn:hover {
+      background: #ef4444;
+    }
+
+    .btn-submit-post {
+      background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+      color: white;
+      border: none;
+      padding: 13px 20px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+      transition: opacity 0.2s;
+    }
+
+    .btn-submit-post:hover {
+      opacity: 0.95;
+    }
+
+    .btn-submit-post:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .composer-msg {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      display: none;
+    }
+
+    /* SEARCH & FILTER BAR */
+    .filter-card {
+      background: white;
+      border: 1px solid #e6e1ee;
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .filter-grid input,
+    .filter-grid select {
+      padding: 10px 12px;
+      border: 1.5px solid #e0d9eb;
+      border-radius: 8px;
+      font-size: 13px;
+      outline: none;
+      background: #fff;
+    }
+
+    .filter-btn {
+      background: #7c3aed;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+      background: #6d28d9;
+    }
+
+    .btn-reset {
+      background: #f1edf7;
+      color: #5b21b6;
+      border: 1px solid #ddd6fe;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-reset:hover {
+      background: #ede9fe;
+    }
+
+    /* FEED STATUS BAR */
+    .feed-status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding: 0 4px;
+    }
+
+    .feed-count {
+      font-size: 13px;
+      font-weight: 600;
+      color: #6b5c82;
+    }
+
+    /* =======================================
+       INSTAGRAM POST CARD COMPONENT
+    ======================================= */
+    .ig-card {
+      background: #ffffff;
+      border: 1px solid #e8e3f0;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      overflow: hidden;
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .ig-card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    /* 1. POST HEADER */
+    .ig-header {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .ig-user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Story Gradient Ring */
+    .ig-avatar-ring {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      padding: 2.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ig-avatar-inner {
+      width: 100%;
+      height: 100%;
+      background: #6d28d9;
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      border: 2px solid white;
+      text-transform: uppercase;
+    }
+
+    .ig-meta {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ig-name-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .ig-author-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #17141f;
+    }
+
+    .ig-verified-badge {
+      color: #3b82f6;
+      font-size: 13px;
+    }
+
+    .ig-submeta {
+      font-size: 12px;
+      color: #797187;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Status Badges */
+    .ig-badge-lost {
+      background: #fee2e2;
+      color: #dc2626;
+      border: 1px solid #fca5a5;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ig-badge-found {
+      background: #d1fae5;
+      color: #059669;
+      border: 1px solid #a7f3d0;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #dc2626;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+
+    /* 2. THE MAIN INSTAGRAM IMAGE POST */
+    .ig-image-container {
+      width: 100%;
+      background: #0f0d14;
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .ig-post-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .ig-image-container:hover .ig-post-image {
+      transform: scale(1.02);
+    }
+
+    .ig-image-overlay {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.65);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Fallback banner when reporter had no photo */
+    .ig-image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #2e1065 0%, #4c1d95 50%, #831843 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .placeholder-camera-icon {
+      font-size: 48px;
+      margin-bottom: 10px;
+      opacity: 0.9;
+    }
+
+    .placeholder-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .placeholder-tag {
+      background: rgba(255, 255, 255, 0.18);
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* 3. INSTAGRAM ACTION BAR */
+    .ig-actions-row {
+      padding: 12px 16px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .ig-action-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .ig-icon-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #373344;
+      padding: 4px;
+      transition: transform 0.15s, color 0.15s;
+    }
+
+    .ig-icon-btn:hover {
+      transform: scale(1.1);
+      color: #7c3aed;
+    }
+
+    .ig-icon-btn.liked {
+      color: #e11d48;
+    }
+
+    .ig-like-count {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* 4. POST CAPTION & DETAILS */
+    .ig-body {
+      padding: 0 16px 16px;
+    }
+
+    .ig-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #17141f;
+      margin-bottom: 6px;
+    }
+
+    .ig-caption {
+      font-size: 14px;
+      color: #393444;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .ig-caption-author {
+      font-weight: 700;
+      color: #17141f;
+      margin-right: 6px;
+    }
+
+    .ig-tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .ig-tag-chip {
+      background: #f4effb;
+      color: #6d28d9;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    .ig-loc-chip {
+      background: #f1f0f5;
+      color: #554f63;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* 5. CONTACT BUTTONS */
+    .ig-contact-box {
+      background: #faf8fd;
+      border: 1px solid #ebe4f5;
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .ig-contact-left {
+      font-size: 13px;
+      color: #4b4556;
+    }
+
+    .ig-contact-left strong {
+      color: #17141f;
+    }
+
+    .ig-contact-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-contact {
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: opacity 0.15s;
+    }
+
+    .btn-contact:hover {
+      opacity: 0.9;
+    }
+
+    .btn-call {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-whatsapp {
+      background: #16a34a;
+      color: white;
+    }
+
+    .btn-email {
+      background: #7c3aed;
+      color: white;
+    }
+
+    /* EMPTY FEED STATE */
+    .empty-feed {
+      background: white;
+      border: 1px solid #e8e3f0;
+      border-radius: 16px;
+      padding: 50px 20px;
+      text-align: center;
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.04);
+    }
+
+    .empty-icon {
+      font-size: 52px;
+      margin-bottom: 14px;
+    }
+
+    .empty-feed h3 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #2e1065;
+      margin-bottom: 8px;
+    }
+
+    .empty-feed p {
+      font-size: 14px;
+      color: #6b5c82;
+      max-width: 400px;
+      margin: 0 auto 18px;
+    }
+
+    /* LIGHTBOX MODAL */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 85vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -45px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: none;
+      font-size: 24px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    /* TOAST NOTIFICATION */
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #17141f;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+      z-index: 2000;
+      display: none;
+      animation: fadeIn 0.2s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, 10px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 16px 40px;
+      color: #8b8398;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-banner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .ig-header {
+        padding: 12px;
+      }
+
+      .ig-body {
+        padding: 0 12px 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP NAVBAR -->
+  <header>
+    <div class="header-inner">
+      <a href="/home.html" class="brand">
+        <div class="brand-icon">F</div>
+        <div class="brand-title">FindBack</div>
+      </a>
+
+      <div class="header-right">
+        <div class="user-pill" id="userPill">
+          <span class="user-pill-dot"></span>
+          <span id="headerUserName">User</span>
+        </div>
+
+        <button type="button" class="btn-create-post" onclick="toggleComposer()">
+          <span>+</span> Post Item
+        </button>
+
+        <button type="button" class="btn-logout" onclick="logout()">
+          Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN FEED -->
+  <main>
+
+    <!-- HERO / QUICK PROMPT -->
+    <div class="hero-banner" id="heroBanner">
+      <div class="hero-text">
+        <h2>Lost or Found Something?</h2>
+        <p>Post a photo to help our community identify and return it swiftly.</p>
+      </div>
+      <button type="button" class="hero-action-btn" onclick="openComposer()">
+        📸 Report Item Now
+      </button>
+    </div>
+
+    <!-- POST COMPOSER (Instagram Post Form) -->
+    <section class="post-composer-card" id="postComposerCard" style="display: none;">
+      <div class="composer-header">
+        <h3>📸 Create Instagram-Style Item Post</h3>
+        <button type="button" onclick="toggleComposer()" style="background: none; border: none; font-size: 20px; cursor: pointer; color: #888;">&times;</button>
+      </div>
+
+      <form id="itemForm">
+        <div class="form-grid">
+          <!-- TITLE -->
+          <input type="text" id="title" class="input-field" placeholder="Item Name (e.g., iPhone 14 Pro, House Keys)" required>
+
+          <!-- TYPE -->
+          <select id="type" class="select-field" required>
+            <option value="">Select Post Type...</option>
+            <option value="lost">🔴 Lost Item</option>
+            <option value="found">🟢 Found Item</option>
+          </select>
+
+          <!-- CATEGORY -->
+          <input type="text" id="category" class="input-field" placeholder="Category (Electronics, Wallet, Keys, Pet)" required>
+
+          <!-- LOCATION -->
+          <input type="text" id="location" class="input-field" placeholder="Location (e.g. Central Library, Anna Nagar)" required>
+
+          <!-- DESCRIPTION -->
+          <textarea id="description" class="textarea-field form-full" placeholder="Detailed description: color, brand, distinct marks, when it went missing..." required></textarea>
+
+          <!-- PHOTO DROPZONE (Prominent like Instagram) -->
+          <div class="form-full">
+            <div class="photo-dropzone" id="dropzoneBox">
+              <input type="file" id="imageInput" accept="image/*">
+              <div class="dropzone-icon">📷</div>
+              <div class="dropzone-label">Click or Drag &amp; Drop Item Photo Here</div>
+              <div class="dropzone-sub">Supports JPG, PNG, WEBP (Max 5MB)</div>
+            </div>
+
+            <!-- LIVE PREVIEW CONTAINER -->
+            <div class="image-preview-container" id="previewContainer">
+              <img id="previewImg" src="" alt="Post photo preview">
+              <button type="button" class="preview-remove-btn" onclick="clearSelectedPhoto()">✕ Remove Photo</button>
+            </div>
+          </div>
+
+          <!-- OPTIONAL DIRECT IMAGE URL -->
+          <input type="url" id="imageUrl" class="input-field form-full" placeholder="Or paste an image web URL (Optional): https://...">
+
+          <!-- CONTACT INFO -->
+          <input type="text" id="contactName" class="input-field" placeholder="Your Name" required>
+          <input type="email" id="contactEmail" class="input-field" placeholder="Your Email" required>
+          <input type="tel" id="contactPhone" class="input-field form-full" placeholder="Your Contact Phone (e.g. +91 9876543210)" required>
+
+          <!-- SUBMIT BUTTON -->
+          <button type="submit" id="submitPostBtn" class="btn-submit-post form-full">
+            Publish Post to Feed
+          </button>
+        </div>
+      </form>
+
+      <div id="formMessage" class="composer-msg"></div>
+    </section>
+
+    <!-- SEARCH & FILTER -->
+    <section class="filter-card">
+      <div class="filter-grid">
+        <input type="text" id="search" placeholder="🔍 Search items by title, desc, location..." onkeyup="if(event.key==='Enter') searchItems()">
+
+        <select id="filterType" onchange="searchItems()">
+          <option value="">All Statuses</option>
+          <option value="lost">Lost Only</option>
+          <option value="found">Found Only</option>
+        </select>
+
+        <input type="text" id="filterCategory" placeholder="Category" onkeyup="if(event.key==='Enter') searchItems()">
+
+        <div style="display: flex; gap: 6px;">
+          <button type="button" class="filter-btn" onclick="searchItems()">Filter</button>
+          <button type="button" class="btn-reset" onclick="resetFilters()">Reset</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEED STATUS HEADER -->
+    <div class="feed-status-bar">
+      <span class="feed-count" id="feedCountText">Community Posts</span>
+      <button type="button" onclick="loadItems()" style="background: none; border: none; color: #7c3aed; font-size: 13px; font-weight: 700; cursor: pointer;">↻ Refresh Feed</button>
+    </div>
+
+    <!-- POSTS FEED CONTAINER -->
+    <section id="itemsFeed">
+      <div class="empty-feed">
+        <div class="empty-icon">⏳</div>
+        <h3>Loading community posts...</h3>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+    <div class="lightbox-content">
+      <button type="button" class="lightbox-close" onclick="closeLightbox()">&times;</button>
+      <img id="lightboxImg" class="lightbox-img" src="" alt="Full size photo">
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastMsg" class="toast-msg"></div>
+
+  <footer>
+    <p>&copy; 2026 FindBack &bull; Connecting People &amp; Recovering Lost Belongings</p>
+  </footer>
+
+  <script>
+    /* =========================
+       SAFE JSON PARSER
+    ========================= */
+    async function safeParseJson(response) {
+      if (!response) return null;
+      try {
+        const text = await response.text();
+        if (!text || text.trim() === "") return null;
+        return JSON.parse(text);
+      } catch (err) {
+        return null;
+      }
+    }
+
+    /* =========================
+       AUTHENTICATION GUARD
+    ========================= */
+    const token = localStorage.getItem("findbackToken");
+    if (!token) {
+      window.location.replace("/");
+    }
+
+    // Populate user from local cache
+    const cachedUserStr = localStorage.getItem("findbackUser");
+    if (cachedUserStr) {
+      try {
+        const cachedUser = JSON.parse(cachedUserStr);
+        if (cachedUser && cachedUser.name) {
+          document.getElementById("headerUserName").textContent = cachedUser.name;
+          if (!document.getElementById("contactName").value) {
+            document.getElementById("contactName").value = cachedUser.name;
+          }
+        }
+        if (cachedUser && cachedUser.email && !document.getElementById("contactEmail").value) {
+          document.getElementById("contactEmail").value = cachedUser.email;
+        }
+      } catch (e) {}
+    }
+
+    // Verify token with backend
+    async function verifySession() {
+      if (!token) return;
+      try {
+        const res = await fetch("/api/auth/me", {
+          headers: { Authorization: "Bearer " + token }
+        });
+        if (!res.ok) {
+          localStorage.removeItem("findbackToken");
+          localStorage.removeItem("findbackUser");
+          window.location.replace("/");
+          return;
+        }
+        const data = await safeParseJson(res);
+        if (data && data.user) {
+          localStorage.setItem("findbackUser", JSON.stringify(data.user));
+          document.getElementById("headerUserName").textContent = data.user.name;
+          if (!document.getElementById("contactName").value) {
+            document.getElementById("contactName").value = data.user.name;
+          }
+          if (!document.getElementById("contactEmail").value) {
+            document.getElementById("contactEmail").value = data.user.email;
+          }
+        }
+      } catch (err) {}
+    }
+
+    if (token) {
+      verifySession();
+    }
+
+    function logout() {
+      localStorage.removeItem("findbackToken");
+      localStorage.removeItem("findbackUser");
+      window.location.replace("/");
+    }
+
+    /* =========================
+       COMPOSER TOGGLE
+    ========================= */
+    function toggleComposer() {
+      const card = document.getElementById("postComposerCard");
+      if (card.style.display === "none") {
+        card.style.display = "block";
+        card.scrollIntoView({ behavior: "smooth" });
+      } else {
+        card.style.display = "none";
+      }
+    }
+
+    function openComposer() {
+      const card = document.getElementById("postComposerCard");
+      card.style.display = "block";
+      card.scrollIntoView({ behavior: "smooth" });
+    }
+
+    /* =========================
+       PHOTO PREVIEW & SELECTION
+    ========================= */
+    const imageInput = document.getElementById("imageInput");
+    const previewContainer = document.getElementById("previewContainer");
+    const previewImg = document.getElementById("previewImg");
+    const dropzoneBox = document.getElementById("dropzoneBox");
+    const imageUrlInput = document.getElementById("imageUrl");
+
+    imageInput.addEventListener("change", function () {
+      if (this.files && this.files[0]) {
+        const file = this.files[0];
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          previewImg.src = e.target.result;
+          previewContainer.style.display = "block";
+          dropzoneBox.style.display = "none";
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    imageUrlInput.addEventListener("input", function() {
+      const url = this.value.trim();
+      if (url && (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("data:image/"))) {
+        previewImg.src = url;
+        previewContainer.style.display = "block";
+        dropzoneBox.style.display = "none";
+      }
+    });
+
+    function clearSelectedPhoto() {
+      imageInput.value = "";
+      imageUrlInput.value = "";
+      previewImg.src = "";
+      previewContainer.style.display = "none";
+      dropzoneBox.style.display = "block";
+    }
+
+    /* =========================
+       LIKE COUNTERS (Local State)
+    ========================= */
+    function getLikedItems() {
+      try {
+        return JSON.parse(localStorage.getItem("findbackLikes") || "{}");
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function toggleLike(itemId) {
+      const likes = getLikedItems();
+      const isLiked = !likes[itemId];
+      likes[itemId] = isLiked;
+      localStorage.setItem("findbackLikes", JSON.stringify(likes));
+
+      const btn = document.getElementById(`like-btn-${itemId}`);
+      const countSpan = document.getElementById(`like-count-${itemId}`);
+      if (btn && countSpan) {
+        let currentCount = parseInt(countSpan.textContent, 10) || 0;
+        if (isLiked) {
+          btn.classList.add("liked");
+          countSpan.textContent = currentCount + 1;
+          showToast("Added to your liked posts ❤️");
+        } else {
+          btn.classList.remove("liked");
+          countSpan.textContent = Math.max(0, currentCount - 1);
+        }
+      }
+    }
+
+    /* =========================
+       SHARE POST
+    ========================= */
+    function sharePost(itemId, title) {
+      const url = window.location.origin + "/home.html?item=" + itemId;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+          showToast("Post link copied to clipboard 📋");
+        }).catch(() => {
+          showToast("Share: " + title);
+        });
+      } else {
+        showToast("Share: " + title);
+      }
+    }
+
+    /* =========================
+       TOAST HELPER
+    ========================= */
+    let toastTimer = null;
+    function showToast(text) {
+      const toast = document.getElementById("toastMsg");
+      toast.textContent = text;
+      toast.style.display = "block";
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.style.display = "none";
+      }, 2500);
+    }
+
+    /* =========================
+       LIGHTBOX VIEWER
+    ========================= */
+    function openLightbox(imgSrc) {
+      if (!imgSrc) return;
+      document.getElementById("lightboxImg").src = imgSrc;
+      document.getElementById("lightboxModal").style.display = "flex";
+    }
+
+    function closeLightbox(event) {
+      if (!event || event.target.id === "lightboxModal" || event.target.classList.contains("lightbox-close")) {
+        document.getElementById("lightboxModal").style.display = "none";
+      }
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        document.getElementById("lightboxModal").style.display = "none";
+      }
+    });
+
+    /* =========================
+       RELATIVE TIME HELPER
+    ========================= */
+    function formatRelativeTime(dateStr) {
+      if (!dateStr) return "Just now";
+      const past = new Date(dateStr).getTime();
+      const now = Date.now();
+      const diffSec = Math.floor((now - past) / 1000);
+      if (diffSec < 60) return "Just now";
+      const diffMin = Math.floor(diffSec / 60);
+      if (diffMin < 60) return `${diffMin}m ago`;
+      const diffHr = Math.floor(diffMin / 60);
+      if (diffHr < 24) return `${diffHr}h ago`;
+      const diffDay = Math.floor(diffHr / 24);
+      if (diffDay < 30) return `${diffDay}d ago`;
+      return new Date(dateStr).toLocaleDateString();
+    }
+
+    /* =========================
+       DISPLAY ITEMS AS INSTAGRAM POSTS
+    ========================= */
+    function displayItems(items) {
+      const feed = document.getElementById("itemsFeed");
+      const feedCount = document.getElementById("feedCountText");
+
+      if (!items || items.length === 0) {
+        feedCount.textContent = "0 Posts";
+        feed.innerHTML = `
+          <div class="empty-feed">
+            <div class="empty-icon">📷</div>
+            <h3>No Posts Found</h3>
+            <p>No lost or found items reported yet. Be the first to share an item with photo!</p>
+            <button type="button" class="hero-action-btn" onclick="openComposer()">+ Create First Post</button>
+          </div>
+        `;
+        return;
+      }
+
+      feedCount.textContent = `${items.length} Community ${items.length === 1 ? 'Post' : 'Posts'}`;
+      const likedItems = getLikedItems();
+
+      feed.innerHTML = items.map(item => {
+        const itemId = item._id || "item_" + Math.random().toString(36).substring(2);
+        const isLost = (item.type || "").toLowerCase() === "lost";
+        const authorInitial = (item.contactName || "U").charAt(0).toUpperCase();
+        const timeAgo = formatRelativeTime(item.createdAt);
+        const isLiked = !!likedItems[itemId];
+        const cleanPhone = (item.contactPhone || "").replace(/[^0-9+]/g, "");
+
+        // Build Instagram image or styled visual banner
+        let imageHtml = "";
+        if (item.image) {
+          imageHtml = `
+            <div class="ig-image-container" onclick="openLightbox('${item.image}')">
+              <img src="${item.image}" class="ig-post-image" alt="${item.title || 'Item image'}" loading="lazy">
+              <div class="ig-image-overlay">🔍 Tap to expand</div>
+            </div>
+          `;
+        } else {
+          imageHtml = `
+            <div class="ig-image-container" onclick="showToast('No photo uploaded for this item')">
+              <div class="ig-image-placeholder">
+                <div class="placeholder-camera-icon">📷</div>
+                <div class="placeholder-title">${item.title || 'Item Reported'}</div>
+                <div class="placeholder-tag">No Photo Attached &bull; ${item.category || 'General'}</div>
+              </div>
+            </div>
+          `;
+        }
+
+        return `
+          <article class="ig-card" id="card-${itemId}">
+            <!-- 1. POST HEADER -->
+            <div class="ig-header">
+              <div class="ig-user-info">
+                <div class="ig-avatar-ring">
+                  <div class="ig-avatar-inner">${authorInitial}</div>
+                </div>
+                <div class="ig-meta">
+                  <div class="ig-name-row">
+                    <span class="ig-author-name">${item.contactName || "Community Member"}</span>
+                    <span class="ig-verified-badge" title="Verified Member">✓</span>
+                  </div>
+                  <div class="ig-submeta">
+                    <span>📍 ${item.location || "Nearby"}</span>
+                    <span>&bull;</span>
+                    <span>${timeAgo}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                ${
+                  isLost
+                    ? `<span class="ig-badge-lost"><span class="pulse-dot"></span> LOST</span>`
+                    : `<span class="ig-badge-found">✓ FOUND</span>`
+                }
+              </div>
+            </div>
+
+            <!-- 2. VISIBLE INSTAGRAM POST IMAGE -->
+            ${imageHtml}
+
+            <!-- 3. ACTIONS ROW -->
+            <div class="ig-actions-row">
+              <div class="ig-action-left">
+                <button type="button" class="ig-icon-btn ${isLiked ? 'liked' : ''}" id="like-btn-${itemId}" onclick="toggleLike('${itemId}')" title="Like this post">
+                  <span>${isLiked ? '❤️' : '🤍'}</span>
+                  <span class="ig-like-count" id="like-count-${itemId}">${isLiked ? '1' : '0'}</span>
+                </button>
+                <button type="button" class="ig-icon-btn" onclick="document.getElementById('contact-box-${itemId}').scrollIntoView({behavior: 'smooth'})" title="Contact poster">
+                  <span>💬</span>
+                </button>
+                <button type="button" class="ig-icon-btn" onclick="sharePost('${itemId}', '${(item.title || '').replace(/'/g, "\\'")}')" title="Share post link">
+                  <span>↗️</span>
+                </button>
+              </div>
+
+              <div>
+                <span style="font-size: 11px; font-weight: 700; color: #8b8398; text-transform: uppercase;">
+                  ${item.category || "Item"}
+                </span>
+              </div>
+            </div>
+
+            <!-- 4. CAPTION & METADATA -->
+            <div class="ig-body">
+              <div class="ig-title">${item.title || ""}</div>
+
+              <div class="ig-caption">
+                <span class="ig-caption-author">${item.contactName || "User"}</span>
+                <span>${item.description || ""}</span>
+              </div>
+
+              <div class="ig-tags-row">
+                <span class="ig-tag-chip">#${(item.category || "item").replace(/\s+/g, '')}</span>
+                <span class="ig-loc-chip">📍 ${item.location || "Unspecified"}</span>
+              </div>
+
+              <!-- 5. CONTACT BUTTONS -->
+              <div class="ig-contact-box" id="contact-box-${itemId}">
+                <div class="ig-contact-left">
+                  Contact: <strong>${item.contactName || "Owner/Finder"}</strong>
+                </div>
+
+                <div class="ig-contact-actions">
+                  ${
+                    item.contactPhone
+                      ? `<a href="tel:${cleanPhone}" class="btn-contact btn-call">📞 Call</a>`
+                      : ""
+                  }
+                  ${
+                    cleanPhone
+                      ? `<a href="https://wa.me/${cleanPhone.replace('+', '')}?text=Hi%20${encodeURIComponent(item.contactName || '')},%20inquiring%20about%20your%20FindBack%20post:%20${encodeURIComponent(item.title || '')}" target="_blank" class="btn-contact btn-whatsapp">💬 WhatsApp</a>`
+                      : ""
+                  }
+                  ${
+                    item.contactEmail
+                      ? `<a href="mailto:${item.contactEmail}?subject=Inquiring%20about%20FindBack%20post:%20${encodeURIComponent(item.title || '')}" class="btn-contact btn-email">✉️ Email</a>`
+                      : ""
+                  }
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    /* =========================
+       LOAD ALL ITEMS
+    ========================= */
+    async function loadItems() {
+      try {
+        const feed = document.getElementById("itemsFeed");
+        feed.innerHTML = `
+          <div class="empty-feed">
+            <div class="empty-icon">⏳</div>
+            <h3>Fetching Latest Posts...</h3>
+          </div>
+        `;
+        const response = await fetch("/api/items");
+        const data = await safeParseJson(response);
+
+        if (data && Array.isArray(data.items)) {
+          displayItems(data.items);
+        } else {
+          document.getElementById("itemsFeed").innerHTML =
+            '<div class="empty-feed"><h3>Unable to load posts at this moment.</h3></div>';
+        }
+      } catch (error) {
+        document.getElementById("itemsFeed").innerHTML =
+          '<div class="empty-feed"><h3>Unable to connect to server.</h3></div>';
+      }
+    }
+
+    /* =========================
+       SEARCH & FILTERS
+    ========================= */
+    async function searchItems() {
+      const search = document.getElementById("search").value.trim();
+      const type = document.getElementById("filterType").value;
+      const category = document.getElementById("filterCategory").value.trim();
+
+      const params = new URLSearchParams();
+      if (search !== "") params.set("search", search);
+      if (type !== "") params.set("type", type);
+      if (category !== "") params.set("category", category);
+
+      const queryString = params.toString();
+      const url = queryString ? "/api/items?" + queryString : "/api/items";
+
+      try {
+        const response = await fetch(url);
+        const data = await safeParseJson(response);
+
+        if (data && Array.isArray(data.items)) {
+          displayItems(data.items);
+        } else {
+          document.getElementById("itemsFeed").innerHTML =
+            '<div class="empty-feed"><h3>No matching posts found.</h3></div>';
+        }
+      } catch (error) {
+        document.getElementById("itemsFeed").innerHTML =
+          '<div class="empty-feed"><h3>Search failed. Please try again.</h3></div>';
+      }
+    }
+
+    function resetFilters() {
+      document.getElementById("search").value = "";
+      document.getElementById("filterType").value = "";
+      document.getElementById("filterCategory").value = "";
+      loadItems();
+    }
+
+    /* =========================
+       PUBLISH NEW POST
+    ========================= */
+    document.getElementById("itemForm").addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const message = document.getElementById("formMessage");
+      const submitBtn = document.getElementById("submitPostBtn");
+
+      message.style.display = "block";
+      message.style.background = "#ede9fe";
+      message.style.color = "#6d28d9";
+      message.textContent = "Publishing post to feed...";
+      submitBtn.disabled = true;
+
+      const formData = new FormData();
+      formData.append("title", document.getElementById("title").value.trim());
+      formData.append("description", document.getElementById("description").value.trim());
+      formData.append("category", document.getElementById("category").value.trim());
+      formData.append("location", document.getElementById("location").value.trim());
+      formData.append("type", document.getElementById("type").value);
+      formData.append("contactName", document.getElementById("contactName").value.trim());
+      formData.append("contactEmail", document.getElementById("contactEmail").value.trim());
+      formData.append("contactPhone", document.getElementById("contactPhone").value.trim());
+
+      // Check uploaded file or image URL
+      const fileInput = document.getElementById("imageInput");
+      if (fileInput.files && fileInput.files.length > 0) {
+        formData.append("image", fileInput.files[0]);
+      } else {
+        const urlVal = document.getElementById("imageUrl").value.trim();
+        if (urlVal) {
+          formData.append("imageUrl", urlVal);
+        }
+      }
+
+      try {
+        const response = await fetch("/api/items", {
+          method: "POST",
+          headers: {
+            Authorization: "Bearer " + token
+          },
+          body: formData
+        });
+
+        const data = await safeParseJson(response);
+
+        if (response.ok && data) {
+          message.textContent = "Post published successfully! 🎉";
+          message.style.background = "#d1fae5";
+          message.style.color = "#065f46";
+
+          document.getElementById("itemForm").reset();
+          clearSelectedPhoto();
+          submitBtn.disabled = false;
+
+          // Hide composer after 1s and refresh feed
+          setTimeout(() => {
+            message.style.display = "none";
+            document.getElementById("postComposerCard").style.display = "none";
+            loadItems();
+            showToast("Your post is now live on the feed!");
+          }, 800);
+        } else {
+          submitBtn.disabled = false;
+          message.textContent = (data && data.message) ? data.message : "Failed to publish post.";
+          message.style.background = "#fee2e2";
+          message.style.color = "#991b1b";
+        }
+      } catch (error) {
+        submitBtn.disabled = false;
+        message.textContent = "Unable to connect to server.";
+        message.style.background = "#fee2e2";
+        message.style.color = "#991b1b";
+      }
+    });
+
+    // Initial load
+    loadItems();
+  </script>
+</body>
+
+</html>

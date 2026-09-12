@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FindBack</title>
+  <meta name="description" content="Lost and found web application to report, search, and recover lost items">
+  <meta property="og:title" content="FindBack">
+  <meta property="og:description" content="Lost and found web application to report, search, and recover lost items">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #faf9ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      color: #1f1a29;
+    }
+
+    .box {
+      width: 100%;
+      max-width: 400px;
+      background: white;
+      padding: 36px 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(109, 40, 217, 0.08);
+      border: 1px solid #ede9fe;
+    }
+
+    .brand-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .brand-header h1 {
+      color: #6d28d9;
+      font-size: 28px;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    .brand-header p {
+      color: #6b6475;
+      font-size: 14px;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: #2e263d;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #4b4556;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #d8d0e3;
+      border-radius: 9px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus {
+      border-color: #6d28d9;
+      box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.15);
+    }
+
+    button#submitBtn {
+      width: 100%;
+      padding: 13px;
+      background: #6d28d9;
+      color: white;
+      border: none;
+      border-radius: 9px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      margin-top: 6px;
+      transition: background 0.2s;
+    }
+
+    button#submitBtn:hover {
+      background: #5b21b6;
+    }
+
+    button#submitBtn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    #message {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+      font-size: 14px;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 14px;
+      color: #6b6475;
+    }
+
+    .register-link a {
+      color: #6d28d9;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+
+    #alreadyLoggedInBanner {
+      display: none;
+      margin-bottom: 18px;
+      padding: 12px;
+      background: #ede9fe;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #5b21b6;
+      text-align: center;
+    }
+
+    #alreadyLoggedInBanner a {
+      color: #6d28d9;
+      font-weight: bold;
+      margin-left: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box" id="loginCard">
+
+    <div class="brand-header" id="brandHeader">
+      <h1>FindBack</h1>
+      <p>Lost something? Let's find it back.</p>
+    </div>
+
+    <div id="alreadyLoggedInBanner">
+      <span>Logged in as <strong id="loggedInUserName">User</strong>.</span>
+      <a href="/home.html" id="goToHomeLink">Go to Home &rarr;</a>
+    </div>
+
+    <h2>Sign In</h2>
+
+    <form id="loginForm">
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="name@example.com"
+          autocomplete="email"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+          required
+        >
+      </div>
+
+      <button type="submit" id="submitBtn">
+        Sign In
+      </button>
+
+    </form>
+
+    <div id="message"></div>
+
+    <div class="register-link" id="registerPrompt">
+      New to FindBack?
+      <a href="/register.html" id="createAccountLink">
+        Create an Account
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    // Check if user is already logged in
+    (function checkExistingSession() {
+      const existingToken = localStorage.getItem("findbackToken");
+      const existingUserStr = localStorage.getItem("findbackUser");
+      if (existingToken) {
+        let displayName = "User";
+        if (existingUserStr) {
+          try {
+            const u = JSON.parse(existingUserStr);
+            if (u.name) displayName = u.name;
+          } catch (e) {}
+        }
+        const banner = document.getElementById("alreadyLoggedInBanner");
+        const userNameSpan = document.getElementById("loggedInUserName");
+        if (banner && userNameSpan) {
+          userNameSpan.textContent = displayName;
+          banner.style.display = "block";
+        }
+      }
+    })();
+
+    document
+      .getElementById("loginForm")
+      .addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const message = document.getElementById("message");
+        const submitBtn = document.getElementById("submitBtn");
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+
+        if (!email || !password) {
+          message.style.display = "block";
+          message.style.background = "#fee2e2";
+          message.style.color = "#991b1b";
+          message.textContent = "Please provide both email and password.";
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Signing In...";
+        message.style.display = "block";
+        message.style.background = "#ede9fe";
+        message.style.color = "#6d28d9";
+        message.textContent = "Authenticating with server...";
+
+        async function safeParseJson(res) {
+          if (!res) return null;
+          try {
+            const text = await res.text();
+            if (!text || text.trim() === "") return null;
+            return JSON.parse(text);
+          } catch (e) {
+            return null;
+          }
+        }
+
+        try {
+          const response = await fetch("/api/auth/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              email: email,
+              password: password
+            })
+          });
+
+          const data = await safeParseJson(response);
+
+          if (response.ok && data && data.token) {
+            localStorage.setItem("findbackToken", data.token);
+            if (data.user) {
+              localStorage.setItem("findbackUser", JSON.stringify(data.user));
+            }
+
+            message.style.background = "#ede9fe";
+            message.style.color = "#6d28d9";
+            message.textContent = "Login successful! Loading your dashboard...";
+
+            setTimeout(function() {
+              window.location.href = "/home.html";
+            }, 500);
+          } else {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Sign In";
+            message.style.background = "#fee2e2";
+            message.style.color = "#991b1b";
+            message.textContent = (data && data.message) ? data.message : "Invalid email or password.";
+          }
+        } catch (error) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Sign In";
+          message.style.background = "#fee2e2";
+          message.style.color = "#991b1b";
+          message.textContent = "Server connection failed. Please check your network.";
+        }
+      });
+  </script>
+
+</body>
+</html>
