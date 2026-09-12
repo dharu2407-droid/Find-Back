@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FindBack - Community Lost & Found</title>
-  <meta name="description" content="Community lost and found platform with Instagram-style photo posts">
-  <meta property="og:title" content="FindBack - Community Lost & Found">
-  <meta property="og:description" content="Community lost and found platform with Instagram-style photo posts">
+  <title>FindBack - Community Lost &amp; Found</title>
+  <meta name="description" content="Community lost and found platform with Instagram-style photo posts to report and find lost items swiftly.">
+  <meta property="og:title" content="FindBack - Community Lost &amp; Found">
+  <meta property="og:description" content="Community lost and found platform with Instagram-style photo posts to report and find lost items swiftly.">
 
   <style>
     * {
@@ -34,9 +34,9 @@
     }
 
     .header-inner {
-      max-width: 960px;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 14px 20px;
+      padding: 12px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -51,21 +51,21 @@
     }
 
     .brand-icon {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
-      border-radius: 10px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 800;
-      box-shadow: 0 4px 10px rgba(124, 58, 237, 0.25);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
     }
 
     .brand-title {
-      font-size: 20px;
+      font-size: 21px;
       font-weight: 800;
       letter-spacing: -0.5px;
       background: linear-gradient(135deg, #6d28d9, #db2777);
@@ -76,7 +76,7 @@
     .header-right {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .user-pill {
@@ -111,9 +111,11 @@
       align-items: center;
       gap: 6px;
       box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+      transition: transform 0.15s, opacity 0.15s;
     }
 
     .btn-create-post:hover {
+      transform: translateY(-1px);
       opacity: 0.95;
     }
 
@@ -135,88 +137,238 @@
 
     /* MAIN CONTAINER */
     main {
-      max-width: 680px;
-      margin: 24px auto;
+      max-width: 900px;
+      margin: 20px auto 40px;
       padding: 0 16px;
     }
 
-    /* HERO BANNER */
-    .hero-banner {
-      background: linear-gradient(135deg, #f5f0ff 0%, #fdf2f8 100%);
-      border: 1px solid #e9dcfc;
-      border-radius: 16px;
-      padding: 22px 24px;
-      margin-bottom: 24px;
+    /* BANNER */
+    .top-notice {
+      background: linear-gradient(135deg, #fdf2f8 0%, #f5f0ff 100%);
+      border: 1px solid #edd9fc;
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
     }
 
-    .hero-text h2 {
-      font-size: 20px;
-      font-weight: 800;
-      color: #2e1065;
-      margin-bottom: 4px;
-    }
-
-    .hero-text p {
+    .top-notice-text {
       font-size: 13px;
-      color: #6b5c82;
+      color: #581c87;
+      font-weight: 600;
     }
 
-    .hero-action-btn {
+    .top-notice-btn {
       background: #7c3aed;
       color: white;
-      padding: 10px 18px;
-      border-radius: 10px;
       border: none;
-      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
       font-weight: 700;
       cursor: pointer;
       white-space: nowrap;
     }
 
-    .hero-action-btn:hover {
-      background: #6d28d9;
+    /* =======================================
+       INSTAGRAM-STYLE ITEM COMPOSER
+       (OPEN IMMEDIATELY BY DEFAULT)
+    ======================================= */
+    .composer-wrapper {
+      background: #ffffff;
+      border: 1.5px solid #e5def0;
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.06);
     }
 
-    /* POST CREATOR CARD */
-    .post-composer-card {
-      background: white;
-      border: 1px solid #e6e1ee;
-      border-radius: 16px;
-      padding: 22px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.04);
-    }
-
-    .composer-header {
+    .composer-header-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 16px;
-      padding-bottom: 12px;
+      padding-bottom: 14px;
       border-bottom: 1px solid #f1edf7;
     }
 
-    .composer-header h3 {
+    .composer-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .composer-avatar-ring {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      padding: 2.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .composer-avatar-inner {
+      width: 100%;
+      height: 100%;
+      background: #7c3aed;
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
       font-size: 16px;
-      font-weight: 700;
+      border: 2px solid white;
+    }
+
+    .composer-title-text h2 {
+      font-size: 17px;
+      font-weight: 800;
       color: #2e1065;
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+    .composer-title-text p {
+      font-size: 12.5px;
+      color: #6b5c82;
     }
 
-    .form-full {
-      grid-column: 1 / -1;
+    .badge-ig-style {
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    /* EXAMPLE FORMAT PRESETS */
+    .presets-container {
+      background: #faf8ff;
+      border: 1px dashed #d8b4fe;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+    }
+
+    .presets-label {
+      font-size: 12px;
+      font-weight: 800;
+      color: #6d28d9;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .presets-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .preset-pill {
+      background: #ffffff;
+      border: 1.5px solid #e0d4f7;
+      color: #4c1d95;
+      padding: 7px 13px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .preset-pill:hover {
+      background: #7c3aed;
+      border-color: #7c3aed;
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(124, 58, 237, 0.2);
+    }
+
+    .preset-pill.active {
+      background: #7c3aed;
+      border-color: #7c3aed;
+      color: #ffffff;
+    }
+
+    /* 2-COLUMN LAYOUT: FORM + LIVE PREVIEW */
+    .composer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 820px) {
+      .composer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* FORM STYLING */
+    .form-section {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .type-pill-selector {
+      display: flex;
+      gap: 10px;
+      background: #f1edf7;
+      padding: 4px;
+      border-radius: 12px;
+    }
+
+    .type-pill-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      background: transparent;
+      color: #6b5c82;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .type-pill-btn.active-lost {
+      background: #dc2626;
+      color: white;
+      box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+    }
+
+    .type-pill-btn.active-found {
+      background: #059669;
+      color: white;
+      box-shadow: 0 2px 8px rgba(5, 150, 105, 0.3);
+    }
+
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
 
     .input-field,
@@ -226,31 +378,32 @@
       padding: 11px 14px;
       border: 1.5px solid #e0d9eb;
       border-radius: 10px;
-      font-size: 14px;
+      font-size: 13.5px;
       outline: none;
-      background: #fff;
+      background: #ffffff;
       font-family: inherit;
-      transition: border-color 0.2s;
+      color: #1a1721;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     .input-field:focus,
     .select-field:focus,
     .textarea-field:focus {
       border-color: #7c3aed;
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
     }
 
     .textarea-field {
-      min-height: 85px;
+      min-height: 90px;
       resize: vertical;
     }
 
-    /* INSTAGRAM PHOTO DROPZONE */
+    /* PHOTO DROPZONE */
     .photo-dropzone {
-      border: 2px dashed #c4b5fd;
+      border: 2px dashed #a855f7;
       background: #faf8ff;
       border-radius: 12px;
-      padding: 20px;
+      padding: 18px 14px;
       text-align: center;
       cursor: pointer;
       position: relative;
@@ -258,8 +411,8 @@
     }
 
     .photo-dropzone:hover {
-      background: #f5f0ff;
-      border-color: #8b5cf6;
+      background: #f3ebff;
+      border-color: #7c3aed;
     }
 
     .photo-dropzone input[type="file"] {
@@ -273,114 +426,485 @@
     }
 
     .dropzone-icon {
-      font-size: 32px;
-      margin-bottom: 6px;
-    }
-
-    .dropzone-label {
-      font-size: 14px;
-      font-weight: 700;
-      color: #5b21b6;
+      font-size: 30px;
       margin-bottom: 4px;
     }
 
-    .dropzone-sub {
-      font-size: 12px;
-      color: #7c728a;
-    }
-
-    /* LIVE PHOTO PREVIEW */
-    .image-preview-container {
-      display: none;
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #111;
-      aspect-ratio: 4 / 3;
-      max-height: 320px;
-      margin-top: 10px;
-    }
-
-    .image-preview-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .preview-remove-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(0, 0, 0, 0.7);
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 12px;
+    .dropzone-label {
+      font-size: 13.5px;
       font-weight: 700;
-      cursor: pointer;
-      backdrop-filter: blur(4px);
+      color: #5b21b6;
     }
 
-    .preview-remove-btn:hover {
-      background: #ef4444;
+    .dropzone-sub {
+      font-size: 11.5px;
+      color: #7c728a;
+      margin-top: 2px;
     }
 
     .btn-submit-post {
       background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
       color: white;
       border: none;
-      padding: 13px 20px;
+      padding: 14px 22px;
       border-radius: 10px;
       font-size: 15px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
-      transition: opacity 0.2s;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: opacity 0.2s, transform 0.15s;
     }
 
     .btn-submit-post:hover {
       opacity: 0.95;
+      transform: translateY(-1px);
     }
 
     .btn-submit-post:disabled {
       opacity: 0.6;
       cursor: not-allowed;
+      transform: none;
     }
 
     .composer-msg {
-      margin-top: 12px;
+      margin-top: 8px;
       padding: 10px 14px;
       border-radius: 8px;
       font-size: 13px;
       display: none;
     }
 
-    /* SEARCH & FILTER BAR */
+    /* =======================================
+       LIVE INSTAGRAM POST PREVIEW CARD
+    ======================================= */
+    .preview-column {
+      background: #faf8fe;
+      border: 1.5px solid #e9e1f5;
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .preview-header-label {
+      font-size: 12px;
+      font-weight: 800;
+      color: #7c3aed;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* CARD STRUCTURE (Instagram Post) */
+    .ig-card {
+      background: #ffffff;
+      border: 1px solid #e8e3f0;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      overflow: hidden;
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .ig-card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .ig-card.preview-mode {
+      margin-bottom: 0;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    /* 1. HEADER */
+    .ig-header {
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .ig-user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ig-avatar-ring {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      padding: 2.2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ig-avatar-inner {
+      width: 100%;
+      height: 100%;
+      background: #6d28d9;
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 15px;
+      border: 2px solid white;
+      text-transform: uppercase;
+    }
+
+    .ig-meta {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ig-name-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .ig-author-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #17141f;
+    }
+
+    .ig-verified-badge {
+      color: #3b82f6;
+      font-size: 13px;
+    }
+
+    .ig-submeta {
+      font-size: 11.5px;
+      color: #797187;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* BADGES */
+    .ig-badge-lost {
+      background: #fee2e2;
+      color: #dc2626;
+      border: 1px solid #fca5a5;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .ig-badge-found {
+      background: #d1fae5;
+      color: #059669;
+      border: 1px solid #a7f3d0;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #dc2626;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+
+    /* 2. INSTAGRAM IMAGE */
+    .ig-image-container {
+      width: 100%;
+      background: #0f0d14;
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .ig-post-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .ig-image-container:hover .ig-post-image {
+      transform: scale(1.02);
+    }
+
+    .ig-image-overlay {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ig-reward-overlay {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: white;
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .ig-image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #2e1065 0%, #4c1d95 50%, #831843 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .placeholder-camera-icon {
+      font-size: 44px;
+      margin-bottom: 8px;
+    }
+
+    .placeholder-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .placeholder-tag {
+      background: rgba(255, 255, 255, 0.18);
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 11.5px;
+      font-weight: 600;
+    }
+
+    /* 3. ACTION BAR */
+    .ig-actions-row {
+      padding: 10px 16px 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .ig-action-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .ig-icon-btn {
+      background: none;
+      border: none;
+      font-size: 19px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #373344;
+      padding: 4px;
+      transition: transform 0.15s, color 0.15s;
+    }
+
+    .ig-icon-btn:hover {
+      transform: scale(1.15);
+      color: #7c3aed;
+    }
+
+    .ig-icon-btn.liked {
+      color: #e11d48;
+    }
+
+    .ig-like-count {
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    /* 4. CAPTION & BODY */
+    .ig-body {
+      padding: 0 16px 16px;
+    }
+
+    .ig-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #17141f;
+      margin-bottom: 4px;
+    }
+
+    .ig-caption {
+      font-size: 13.5px;
+      color: #393444;
+      margin-bottom: 10px;
+      line-height: 1.55;
+    }
+
+    .ig-caption-author {
+      font-weight: 700;
+      color: #17141f;
+      margin-right: 6px;
+    }
+
+    .ig-tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .ig-tag-chip {
+      background: #f4effb;
+      color: #6d28d9;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .ig-loc-chip {
+      background: #f1f0f5;
+      color: #554f63;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ig-reward-chip {
+      background: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* 5. CONTACT ACTIONS */
+    .ig-contact-box {
+      background: #faf8fd;
+      border: 1px solid #ebe4f5;
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .ig-contact-left {
+      font-size: 12.5px;
+      color: #4b4556;
+    }
+
+    .ig-contact-left strong {
+      color: #17141f;
+    }
+
+    .ig-contact-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .btn-contact {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: opacity 0.15s;
+    }
+
+    .btn-contact:hover {
+      opacity: 0.9;
+    }
+
+    .btn-call {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-whatsapp {
+      background: #16a34a;
+      color: white;
+    }
+
+    .btn-email {
+      background: #7c3aed;
+      color: white;
+    }
+
+    /* FILTER BAR */
     .filter-card {
       background: white;
       border: 1px solid #e6e1ee;
       border-radius: 14px;
-      padding: 14px;
-      margin-bottom: 20px;
+      padding: 14px 16px;
+      margin-bottom: 22px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
     }
 
     .filter-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr auto;
+      grid-template-columns: 2fr 1.2fr 1.2fr auto;
       gap: 10px;
       align-items: center;
-    }
-
-    .filter-grid input,
-    .filter-grid select {
-      padding: 10px 12px;
-      border: 1.5px solid #e0d9eb;
-      border-radius: 8px;
-      font-size: 13px;
-      outline: none;
-      background: #fff;
     }
 
     .filter-btn {
@@ -415,385 +939,24 @@
       background: #ede9fe;
     }
 
-    /* FEED STATUS BAR */
+    /* FEED STATUS HEADER */
     .feed-status-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       padding: 0 4px;
     }
 
     .feed-count {
-      font-size: 13px;
-      font-weight: 600;
-      color: #6b5c82;
-    }
-
-    /* =======================================
-       INSTAGRAM POST CARD COMPONENT
-    ======================================= */
-    .ig-card {
-      background: #ffffff;
-      border: 1px solid #e8e3f0;
-      border-radius: 16px;
-      margin-bottom: 24px;
-      overflow: hidden;
-      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.05);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .ig-card:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    /* 1. POST HEADER */
-    .ig-header {
-      padding: 14px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .ig-user-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    /* Story Gradient Ring */
-    .ig-avatar-ring {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-      padding: 2.5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .ig-avatar-inner {
-      width: 100%;
-      height: 100%;
-      background: #6d28d9;
-      color: #ffffff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 16px;
-      border: 2px solid white;
-      text-transform: uppercase;
-    }
-
-    .ig-meta {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .ig-name-row {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .ig-author-name {
       font-size: 14px;
       font-weight: 700;
-      color: #17141f;
-    }
-
-    .ig-verified-badge {
-      color: #3b82f6;
-      font-size: 13px;
-    }
-
-    .ig-submeta {
-      font-size: 12px;
-      color: #797187;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    /* Status Badges */
-    .ig-badge-lost {
-      background: #fee2e2;
-      color: #dc2626;
-      border: 1px solid #fca5a5;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
+      color: #4338ca;
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .ig-badge-found {
-      background: #d1fae5;
-      color: #059669;
-      border: 1px solid #a7f3d0;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .pulse-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #dc2626;
-      animation: pulse 1.8s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(0.95); opacity: 0.8; }
-      50% { transform: scale(1.3); opacity: 1; }
-      100% { transform: scale(0.95); opacity: 0.8; }
-    }
-
-    /* 2. THE MAIN INSTAGRAM IMAGE POST */
-    .ig-image-container {
-      width: 100%;
-      background: #0f0d14;
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 4 / 3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    .ig-post-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-
-    .ig-image-container:hover .ig-post-image {
-      transform: scale(1.02);
-    }
-
-    .ig-image-overlay {
-      position: absolute;
-      bottom: 12px;
-      right: 12px;
-      background: rgba(0, 0, 0, 0.65);
-      color: white;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 20px;
-      backdrop-filter: blur(4px);
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    /* Fallback banner when reporter had no photo */
-    .ig-image-placeholder {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #2e1065 0%, #4c1d95 50%, #831843 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      padding: 30px;
-      text-align: center;
-    }
-
-    .placeholder-camera-icon {
-      font-size: 48px;
-      margin-bottom: 10px;
-      opacity: 0.9;
-    }
-
-    .placeholder-title {
-      font-size: 18px;
-      font-weight: 800;
-      margin-bottom: 6px;
-      letter-spacing: -0.3px;
-    }
-
-    .placeholder-tag {
-      background: rgba(255, 255, 255, 0.18);
-      padding: 4px 12px;
-      border-radius: 12px;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    /* 3. INSTAGRAM ACTION BAR */
-    .ig-actions-row {
-      padding: 12px 16px 8px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .ig-action-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .ig-icon-btn {
-      background: none;
-      border: none;
-      font-size: 20px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: #373344;
-      padding: 4px;
-      transition: transform 0.15s, color 0.15s;
-    }
-
-    .ig-icon-btn:hover {
-      transform: scale(1.1);
-      color: #7c3aed;
-    }
-
-    .ig-icon-btn.liked {
-      color: #e11d48;
-    }
-
-    .ig-like-count {
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    /* 4. POST CAPTION & DETAILS */
-    .ig-body {
-      padding: 0 16px 16px;
-    }
-
-    .ig-title {
-      font-size: 17px;
-      font-weight: 800;
-      color: #17141f;
-      margin-bottom: 6px;
-    }
-
-    .ig-caption {
-      font-size: 14px;
-      color: #393444;
-      margin-bottom: 12px;
-      line-height: 1.6;
-    }
-
-    .ig-caption-author {
-      font-weight: 700;
-      color: #17141f;
-      margin-right: 6px;
-    }
-
-    .ig-tags-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 14px;
-    }
-
-    .ig-tag-chip {
-      background: #f4effb;
-      color: #6d28d9;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 6px;
-      text-decoration: none;
-    }
-
-    .ig-loc-chip {
-      background: #f1f0f5;
-      color: #554f63;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    /* 5. CONTACT BUTTONS */
-    .ig-contact-box {
-      background: #faf8fd;
-      border: 1px solid #ebe4f5;
-      border-radius: 12px;
-      padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .ig-contact-left {
-      font-size: 13px;
-      color: #4b4556;
-    }
-
-    .ig-contact-left strong {
-      color: #17141f;
-    }
-
-    .ig-contact-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .btn-contact {
-      padding: 7px 12px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      transition: opacity 0.15s;
-    }
-
-    .btn-contact:hover {
-      opacity: 0.9;
-    }
-
-    .btn-call {
-      background: #2563eb;
-      color: white;
-    }
-
-    .btn-whatsapp {
-      background: #16a34a;
-      color: white;
-    }
-
-    .btn-email {
-      background: #7c3aed;
-      color: white;
-    }
-
-    /* EMPTY FEED STATE */
     .empty-feed {
       background: white;
       border: 1px solid #e8e3f0;
@@ -805,21 +968,21 @@
 
     .empty-icon {
       font-size: 52px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .empty-feed h3 {
       font-size: 18px;
       font-weight: 800;
       color: #2e1065;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .empty-feed p {
-      font-size: 14px;
+      font-size: 13.5px;
       color: #6b5c82;
-      max-width: 400px;
-      margin: 0 auto 18px;
+      max-width: 440px;
+      margin: 0 auto 16px;
     }
 
     /* LIGHTBOX MODAL */
@@ -876,7 +1039,7 @@
       background: rgba(255, 255, 255, 0.4);
     }
 
-    /* TOAST NOTIFICATION */
+    /* TOAST */
     .toast-msg {
       position: fixed;
       bottom: 24px;
@@ -907,7 +1070,7 @@
     }
 
     @media (max-width: 600px) {
-      .form-grid {
+      .input-row {
         grid-template-columns: 1fr;
       }
 
@@ -915,17 +1078,16 @@
         grid-template-columns: 1fr;
       }
 
-      .hero-banner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
       .ig-header {
-        padding: 12px;
+        padding: 10px 12px;
       }
 
       .ig-body {
         padding: 0 12px 14px;
+      }
+
+      .composer-wrapper {
+        padding: 16px;
       }
     }
   </style>
@@ -947,8 +1109,8 @@
           <span id="headerUserName">User</span>
         </div>
 
-        <button type="button" class="btn-create-post" onclick="toggleComposer()">
-          <span>+</span> Post Item
+        <button type="button" class="btn-create-post" onclick="scrollToComposer()">
+          <span>+</span> Create Lost Post
         </button>
 
         <button type="button" class="btn-logout" onclick="logout()">
@@ -958,94 +1120,318 @@
     </div>
   </header>
 
-  <!-- MAIN FEED -->
+  <!-- MAIN CONTENT -->
   <main>
 
-    <!-- HERO / QUICK PROMPT -->
-    <div class="hero-banner" id="heroBanner">
-      <div class="hero-text">
-        <h2>Lost or Found Something?</h2>
-        <p>Post a photo to help our community identify and return it swiftly.</p>
+    <!-- PROMINENT NOTICE -->
+    <div class="top-notice">
+      <div class="top-notice-text">
+        🚨 <strong>Lost an item?</strong> Fill out the Instagram-style post below with a photo to help people spot it and contact you immediately!
       </div>
-      <button type="button" class="hero-action-btn" onclick="openComposer()">
-        📸 Report Item Now
+      <button type="button" class="top-notice-btn" onclick="scrollToComposer()">
+        Create Post ↓
       </button>
     </div>
 
-    <!-- POST COMPOSER (Instagram Post Form) -->
-    <section class="post-composer-card" id="postComposerCard" style="display: none;">
-      <div class="composer-header">
-        <h3>📸 Create Instagram-Style Item Post</h3>
-        <button type="button" onclick="toggleComposer()" style="background: none; border: none; font-size: 20px; cursor: pointer; color: #888;">&times;</button>
+    <!-- =======================================
+         CREATE INSTAGRAM-STYLE ITEM POST
+         (OPEN & VISIBLE IMMEDIATELY ON LOAD)
+    ======================================= -->
+    <section class="composer-wrapper" id="composerSection">
+
+      <div class="composer-header-row">
+        <div class="composer-title-group">
+          <div class="composer-avatar-ring">
+            <div class="composer-avatar-inner" id="composerAvatar">U</div>
+          </div>
+          <div class="composer-title-text">
+            <h2>
+              <span>📸 Create Instagram Item Post</span>
+              <span class="badge-ig-style">Live Post Creator</span>
+            </h2>
+            <p>Fill in details to generate a photo post on the community lost &amp; found feed</p>
+          </div>
+        </div>
+
+        <div>
+          <button type="button" id="toggleCollapseBtn" onclick="toggleComposerCollapse()" style="background: #f3effb; border: 1px solid #e0d4f7; color: #5b21b6; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;">
+            − Minimize
+          </button>
+        </div>
       </div>
 
-      <form id="itemForm">
-        <div class="form-grid">
-          <!-- TITLE -->
-          <input type="text" id="title" class="input-field" placeholder="Item Name (e.g., iPhone 14 Pro, House Keys)" required>
+      <!-- 1-CLICK EXAMPLE PRESETS FOR LOST ITEMS -->
+      <div class="presets-container" id="presetsContainer">
+        <div class="presets-label">
+          💡 Click an Example Preset to Auto-Fill Lost Item Format:
+        </div>
+        <div class="presets-pills">
+          <button type="button" class="preset-pill" onclick="applyPreset('phone')">
+            📱 Lost Phone
+          </button>
+          <button type="button" class="preset-pill" onclick="applyPreset('wallet')">
+            👛 Lost Wallet
+          </button>
+          <button type="button" class="preset-pill" onclick="applyPreset('keys')">
+            🔑 Lost Keys
+          </button>
+          <button type="button" class="preset-pill" onclick="applyPreset('laptop')">
+            💻 Lost Laptop
+          </button>
+          <button type="button" class="preset-pill" onclick="applyPreset('backpack')">
+            🎒 Lost Backpack
+          </button>
+          <button type="button" class="preset-pill" onclick="applyPreset('idcard')">
+            🪪 Lost ID Card
+          </button>
+          <button type="button" class="preset-pill" onclick="applyPreset('pet')">
+            🐾 Lost Pet
+          </button>
+          <button type="button" class="preset-pill" onclick="clearFormToBlank()" style="color: #6b5c82; border-color: #d1cbdc;">
+            ↺ Reset Blank
+          </button>
+        </div>
+      </div>
 
-          <!-- TYPE -->
-          <select id="type" class="select-field" required>
-            <option value="">Select Post Type...</option>
-            <option value="lost">🔴 Lost Item</option>
-            <option value="found">🟢 Found Item</option>
-          </select>
+      <!-- COMPOSER GRID (Form + Live Instagram Preview) -->
+      <div class="composer-grid" id="composerBody">
 
-          <!-- CATEGORY -->
-          <input type="text" id="category" class="input-field" placeholder="Category (Electronics, Wallet, Keys, Pet)" required>
+        <!-- LEFT COLUMN: INPUT FORM -->
+        <form id="itemForm" class="form-section">
 
-          <!-- LOCATION -->
-          <input type="text" id="location" class="input-field" placeholder="Location (e.g. Central Library, Anna Nagar)" required>
-
-          <!-- DESCRIPTION -->
-          <textarea id="description" class="textarea-field form-full" placeholder="Detailed description: color, brand, distinct marks, when it went missing..." required></textarea>
-
-          <!-- PHOTO DROPZONE (Prominent like Instagram) -->
-          <div class="form-full">
-            <div class="photo-dropzone" id="dropzoneBox">
-              <input type="file" id="imageInput" accept="image/*">
-              <div class="dropzone-icon">📷</div>
-              <div class="dropzone-label">Click or Drag &amp; Drop Item Photo Here</div>
-              <div class="dropzone-sub">Supports JPG, PNG, WEBP (Max 5MB)</div>
+          <!-- POST TYPE (LOST vs FOUND) -->
+          <div>
+            <label style="font-size: 12px; font-weight: 700; color: #554f63; margin-bottom: 6px; display: block;">
+              Item Status / Type:
+            </label>
+            <div class="type-pill-selector">
+              <button type="button" class="type-pill-btn active-lost" id="typePillLost" onclick="setPostType('lost')">
+                🔴 Lost Item (Help me find it)
+              </button>
+              <button type="button" class="type-pill-btn" id="typePillFound" onclick="setPostType('found')">
+                🟢 Found Item (I found something)
+              </button>
             </div>
+            <input type="hidden" id="type" value="lost" required>
+          </div>
 
-            <!-- LIVE PREVIEW CONTAINER -->
-            <div class="image-preview-container" id="previewContainer">
-              <img id="previewImg" src="" alt="Post photo preview">
-              <button type="button" class="preview-remove-btn" onclick="clearSelectedPhoto()">✕ Remove Photo</button>
+          <!-- TITLE -->
+          <div>
+            <label style="font-size: 12px; font-weight: 700; color: #554f63; margin-bottom: 4px; display: block;">
+              Item Name / Title *
+            </label>
+            <input type="text" id="title" class="input-field" placeholder="e.g. iPhone 14 Pro (Space Black), Leather Wallet" required oninput="updateLivePreview()">
+          </div>
+
+          <!-- CATEGORY & REWARD -->
+          <div class="input-row">
+            <div>
+              <label style="font-size: 12px; font-weight: 700; color: #554f63; margin-bottom: 4px; display: block;">
+                Category *
+              </label>
+              <input type="text" id="category" class="input-field" placeholder="Electronics, Keys, Wallet..." required oninput="updateLivePreview()">
+            </div>
+            <div>
+              <label style="font-size: 12px; font-weight: 700; color: #554f63; margin-bottom: 4px; display: block;">
+                Reward (Optional)
+              </label>
+              <input type="text" id="reward" class="input-field" placeholder="e.g. ₹1,000 Reward / Gift" oninput="updateLivePreview()">
             </div>
           </div>
 
-          <!-- OPTIONAL DIRECT IMAGE URL -->
-          <input type="url" id="imageUrl" class="input-field form-full" placeholder="Or paste an image web URL (Optional): https://...">
+          <!-- LOCATION & DATE LOST -->
+          <div class="input-row">
+            <div>
+              <label style="font-size: 12px; font-weight: 700; color: #554f63; margin-bottom: 4px; display: block;">
+                Last Seen Location *
+              </label>
+              <input type="text" id="location" class="input-field" placeholder="e.g. Central Library, Anna Nagar" required oninput="updateLivePreview()">
+            </div>
+            <div>
+              <label style="font-size: 12px; font-weight: 700; color: #554f63; margin-bottom: 4px; display: block;">
+                Date / Time Lost
+              </label>
+              <input type="text" id="dateLost" class="input-field" placeholder="e.g. Today around 5:30 PM" oninput="updateLivePreview()">
+            </div>
+          </div>
+
+          <!-- DESCRIPTION -->
+          <div>
+            <label style="font-size: 12px; font-weight: 700; color: #554f63; margin-bottom: 4px; display: block;">
+              Detailed Description &amp; Identifying Marks *
+            </label>
+            <textarea id="description" class="textarea-field" placeholder="Describe color, brand, stickers, unique scratches, what was inside, exact place..." required oninput="updateLivePreview()"></textarea>
+          </div>
+
+          <!-- INSTAGRAM PHOTO UPLOADER -->
+          <div>
+            <label style="font-size: 12px; font-weight: 700; color: #554f63; margin-bottom: 4px; display: block;">
+              📸 Item Photo (Prominent Instagram Photo Post)
+            </label>
+            <div class="photo-dropzone" id="dropzoneBox">
+              <input type="file" id="imageInput" accept="image/*">
+              <div class="dropzone-icon">📷</div>
+              <div class="dropzone-label">Click or Drag &amp; Drop Photo Here</div>
+              <div class="dropzone-sub">Supports JPG, PNG, WEBP (Instant Instagram Format Preview)</div>
+            </div>
+
+            <!-- PHOTO REMOVE / CHANGE BAR -->
+            <div id="photoStatusRow" style="display: none; align-items: center; justify-content: space-between; margin-top: 6px; padding: 6px 12px; background: #f3effb; border-radius: 8px;">
+              <span style="font-size: 12px; color: #5b21b6; font-weight: 600;">✓ Photo attached</span>
+              <button type="button" onclick="clearSelectedPhoto()" style="background: none; border: none; color: #dc2626; font-size: 12px; font-weight: 700; cursor: pointer;">
+                ✕ Remove Photo
+              </button>
+            </div>
+          </div>
+
+          <!-- DIRECT IMAGE URL (OPTIONAL) -->
+          <div>
+            <input type="url" id="imageUrl" class="input-field" placeholder="Or paste an image web URL (Optional): https://..." oninput="handleImageUrlInput()">
+          </div>
 
           <!-- CONTACT INFO -->
-          <input type="text" id="contactName" class="input-field" placeholder="Your Name" required>
-          <input type="email" id="contactEmail" class="input-field" placeholder="Your Email" required>
-          <input type="tel" id="contactPhone" class="input-field form-full" placeholder="Your Contact Phone (e.g. +91 9876543210)" required>
+          <div class="input-row">
+            <div>
+              <label style="font-size: 12px; font-weight: 700; color: #554f63; margin-bottom: 4px; display: block;">
+                Contact Name *
+              </label>
+              <input type="text" id="contactName" class="input-field" placeholder="Your Name" required oninput="updateLivePreview()">
+            </div>
+            <div>
+              <label style="font-size: 12px; font-weight: 700; color: #554f63; margin-bottom: 4px; display: block;">
+                Contact Email *
+              </label>
+              <input type="email" id="contactEmail" class="input-field" placeholder="Your Email" required oninput="updateLivePreview()">
+            </div>
+          </div>
+
+          <div>
+            <label style="font-size: 12px; font-weight: 700; color: #554f63; margin-bottom: 4px; display: block;">
+              Contact Phone / WhatsApp *
+            </label>
+            <input type="tel" id="contactPhone" class="input-field" placeholder="e.g. +91 9876543210" required oninput="updateLivePreview()">
+          </div>
 
           <!-- SUBMIT BUTTON -->
-          <button type="submit" id="submitPostBtn" class="btn-submit-post form-full">
-            Publish Post to Feed
+          <button type="submit" id="submitPostBtn" class="btn-submit-post">
+            <span>🚀</span> Publish Instagram Post to Feed
           </button>
-        </div>
-      </form>
 
-      <div id="formMessage" class="composer-msg"></div>
+          <div id="formMessage" class="composer-msg"></div>
+        </form>
+
+        <!-- RIGHT COLUMN: LIVE INSTAGRAM POST PREVIEW -->
+        <div class="preview-column">
+          <div class="preview-header-label">
+            <span>Instagram Post Live Preview</span>
+            <span style="font-size: 11px; background: #e0d4f7; color: #4c1d95; padding: 2px 8px; border-radius: 12px;">Real-time</span>
+          </div>
+
+          <!-- THE PREVIEW CARD -->
+          <article class="ig-card preview-mode" id="livePreviewCard">
+            <!-- 1. Header -->
+            <div class="ig-header">
+              <div class="ig-user-info">
+                <div class="ig-avatar-ring">
+                  <div class="ig-avatar-inner" id="prevAuthorAvatar">U</div>
+                </div>
+                <div class="ig-meta">
+                  <div class="ig-name-row">
+                    <span class="ig-author-name" id="prevAuthorName">Your Name</span>
+                    <span class="ig-verified-badge" title="Verified Member">✓</span>
+                  </div>
+                  <div class="ig-submeta">
+                    <span id="prevLocation">📍 Location</span>
+                    <span>&bull;</span>
+                    <span>Just now</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <span id="prevBadge" class="ig-badge-lost"><span class="pulse-dot"></span> LOST</span>
+              </div>
+            </div>
+
+            <!-- 2. Image -->
+            <div class="ig-image-container" id="prevImageContainer" onclick="showToast('This is your live preview!')">
+              <img id="prevImg" src="" class="ig-post-image" style="display: none;" alt="Preview">
+              <div id="prevPlaceholder" class="ig-image-placeholder">
+                <div class="placeholder-camera-icon">📷</div>
+                <div class="placeholder-title" id="prevPlaceholderTitle">Item Photo Preview</div>
+                <div class="placeholder-tag" id="prevPlaceholderTag">Select preset or upload photo</div>
+              </div>
+              <div class="ig-reward-overlay" id="prevRewardBadge" style="display: none;">
+                <span>🎁</span> <span id="prevRewardText">Reward</span>
+              </div>
+              <div class="ig-image-overlay">🔍 Preview Mode</div>
+            </div>
+
+            <!-- 3. Actions Row -->
+            <div class="ig-actions-row">
+              <div class="ig-action-left">
+                <button type="button" class="ig-icon-btn liked">
+                  <span>❤️</span>
+                  <span class="ig-like-count">1</span>
+                </button>
+                <button type="button" class="ig-icon-btn">
+                  <span>💬</span>
+                </button>
+                <button type="button" class="ig-icon-btn">
+                  <span>↗️</span>
+                </button>
+              </div>
+
+              <div>
+                <span id="prevCategoryTag" style="font-size: 11px; font-weight: 700; color: #8b8398; text-transform: uppercase;">
+                  CATEGORY
+                </span>
+              </div>
+            </div>
+
+            <!-- 4. Body & Caption -->
+            <div class="ig-body">
+              <div class="ig-title" id="prevTitle">Item Title Here</div>
+
+              <div class="ig-caption">
+                <span class="ig-caption-author" id="prevCaptionAuthor">User</span>
+                <span id="prevDescription">Item description will appear here as you type or pick a preset...</span>
+              </div>
+
+              <div class="ig-tags-row">
+                <span class="ig-tag-chip" id="prevHashtag">#LostItem</span>
+                <span class="ig-loc-chip" id="prevLocChip">📍 Location</span>
+              </div>
+
+              <!-- 5. Contact Drawer -->
+              <div class="ig-contact-box">
+                <div class="ig-contact-left">
+                  Contact: <strong id="prevContactText">Your Contact</strong>
+                </div>
+                <div class="ig-contact-actions">
+                  <span class="btn-contact btn-call" style="opacity: 0.85;">📞 Call</span>
+                  <span class="btn-contact btn-whatsapp" style="opacity: 0.85;">💬 WhatsApp</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+      </div>
     </section>
 
-    <!-- SEARCH & FILTER -->
+    <!-- SEARCH & FILTER BAR -->
     <section class="filter-card">
       <div class="filter-grid">
-        <input type="text" id="search" placeholder="🔍 Search items by title, desc, location..." onkeyup="if(event.key==='Enter') searchItems()">
+        <input type="text" id="search" placeholder="🔍 Search lost or found items by name, place, details..." onkeyup="if(event.key==='Enter') searchItems()">
 
         <select id="filterType" onchange="searchItems()">
-          <option value="">All Statuses</option>
-          <option value="lost">Lost Only</option>
-          <option value="found">Found Only</option>
+          <option value="">All Statuses (Lost &amp; Found)</option>
+          <option value="lost">🔴 Lost Items Only</option>
+          <option value="found">🟢 Found Items Only</option>
         </select>
 
-        <input type="text" id="filterCategory" placeholder="Category" onkeyup="if(event.key==='Enter') searchItems()">
+        <input type="text" id="filterCategory" placeholder="Category (e.g. Phone, Keys)" onkeyup="if(event.key==='Enter') searchItems()">
 
         <div style="display: flex; gap: 6px;">
           <button type="button" class="filter-btn" onclick="searchItems()">Filter</button>
@@ -1056,8 +1442,12 @@
 
     <!-- FEED STATUS HEADER -->
     <div class="feed-status-bar">
-      <span class="feed-count" id="feedCountText">Community Posts</span>
-      <button type="button" onclick="loadItems()" style="background: none; border: none; color: #7c3aed; font-size: 13px; font-weight: 700; cursor: pointer;">↻ Refresh Feed</button>
+      <span class="feed-count" id="feedCountText">
+        <span>📸</span> Community Instagram Feed
+      </span>
+      <button type="button" onclick="loadItems()" style="background: none; border: none; color: #7c3aed; font-size: 13px; font-weight: 700; cursor: pointer;">
+        ↻ Refresh Feed
+      </button>
     </div>
 
     <!-- POSTS FEED CONTAINER -->
@@ -1086,9 +1476,108 @@
   </footer>
 
   <script>
-    /* =========================
+    /* =======================================
+       SVG SAMPLE PRESET IMAGES (100% RELIABLE)
+    ======================================= */
+    function makeSvgDataUri(bg1, bg2, icon, title, subtitle) {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450">
+        <defs>
+          <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${bg1}" />
+            <stop offset="100%" stop-color="${bg2}" />
+          </linearGradient>
+        </defs>
+        <rect width="600" height="450" fill="url(#g)" />
+        <circle cx="300" cy="180" r="80" fill="rgba(255,255,255,0.15)" />
+        <text x="300" y="205" font-size="72" text-anchor="middle">${icon}</text>
+        <rect x="180" y="275" width="240" height="34" rx="17" fill="rgba(255,255,255,0.25)" />
+        <text x="300" y="298" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">${title}</text>
+        <text x="300" y="340" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="14" fill="rgba(255,255,255,0.85)" text-anchor="middle">${subtitle}</text>
+      </svg>`;
+      return "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svg)));
+    }
+
+    const PRESET_EXAMPLES = {
+      phone: {
+        title: "Apple iPhone 14 Pro (Space Black)",
+        category: "Electronics",
+        location: "Anna Nagar Tower Park, Chennai",
+        dateLost: "Today around 6:15 PM",
+        reward: "₹2,000 Cash Reward",
+        description: "Lost during evening walk near the main jogging fountain. Has a transparent silicone case with a small anime sticker on the back. Screen lock has a notification for Dharu. Please call or WhatsApp if found!",
+        type: "lost",
+        image: makeSvgDataUri("#1e1b4b", "#4338ca", "📱", "LOST PHONE", "iPhone 14 Pro • Space Black")
+      },
+      wallet: {
+        title: "Brown Leather Tommy Hilfiger Wallet",
+        category: "Wallets & Cards",
+        location: "Express Avenue Mall, 3rd Floor Food Court",
+        dateLost: "Yesterday afternoon 2:30 PM",
+        reward: "₹1,000 Reward (Keep Cash)",
+        description: "Left on dining table near KFC. Contains College ID card, Metro smart card, and driver's license. The cash is fine to keep, I desperately need the ID cards returned for exams!",
+        type: "lost",
+        image: makeSvgDataUri("#78350f", "#b45309", "👛", "LOST WALLET", "Leather Wallet • Contains ID Cards")
+      },
+      keys: {
+        title: "Honda Activa Bike Key Set with Keychain",
+        category: "Keys",
+        location: "Central Metro Station Parking Slot 3",
+        dateLost: "Today morning 9:00 AM",
+        reward: "₹500 Reward",
+        description: "Set of 2 keys: 1 black Honda two-wheeler key and 1 brass Godrej house key. Attached to a blue braided paracord lanyard with a silver whistle. Urgent!",
+        type: "lost",
+        image: makeSvgDataUri("#0f766e", "#115e59", "🔑", "LOST KEYS", "Honda Keyring • Blue Lanyard")
+      },
+      laptop: {
+        title: "Dell XPS 15 Laptop (Silver)",
+        category: "Electronics",
+        location: "University Main Library, 2nd Floor Study Cubicle",
+        dateLost: "Yesterday 4:00 PM",
+        reward: "₹3,000 Reward",
+        description: "Inside a grey felt sleeve with charger. Top lid has GitHub and React stickers. Contains my final year thesis work! Very important, please help recover.",
+        type: "lost",
+        image: makeSvgDataUri("#312e81", "#6d28d9", "💻", "LOST LAPTOP", "Dell XPS 15 • Grey Sleeve")
+      },
+      backpack: {
+        title: "Black Wildcraft College Backpack",
+        category: "Bags & Luggage",
+        location: "MTC Bus Route 27D (Near rear window seat)",
+        dateLost: "Yesterday 6:00 PM",
+        reward: "Reward on Return",
+        description: "Black waterproof bag with orange zipper accents. Inside: Semester notebooks, Scientific Calculator, and a blue water bottle. Please reach out!",
+        type: "lost",
+        image: makeSvgDataUri("#1f2937", "#374151", "🎒", "LOST BACKPACK", "Wildcraft Bag • Orange Zippers")
+      },
+      idcard: {
+        title: "College Student ID Card & Metro Pass",
+        category: "Documents & IDs",
+        location: "Anna University Campus Canteen",
+        dateLost: "Today around 1:00 PM",
+        reward: "₹500 Reward",
+        description: "In a transparent plastic card holder with blue lanyard. Belongs to Dharu. Semester exams are starting this week, urgent recovery needed!",
+        type: "lost",
+        image: makeSvgDataUri("#1e3a8a", "#2563eb", "🪪", "LOST ID CARD", "Student ID Card & Pass")
+      },
+      pet: {
+        title: "Golden Retriever Puppy (Buddy)",
+        category: "Pets & Animals",
+        location: "Besant Nagar Beach promenade",
+        dateLost: "Today morning 7:30 AM",
+        reward: "₹5,000 Reward",
+        description: "6-month-old male golden retriever wearing a red nylon collar with a small brass bell. Very friendly, responds to the name 'Buddy'. Family is deeply worried!",
+        type: "lost",
+        image: makeSvgDataUri("#b45309", "#d97706", "🐾", "LOST PET", "Buddy • Golden Retriever")
+      }
+    };
+
+    /* =======================================
+       STATE
+    ======================================= */
+    let currentUploadedImageDataUri = null;
+
+    /* =======================================
        SAFE JSON PARSER
-    ========================= */
+    ======================================= */
     async function safeParseJson(response) {
       if (!response) return null;
       try {
@@ -1100,32 +1589,35 @@
       }
     }
 
-    /* =========================
+    /* =======================================
        AUTHENTICATION GUARD
-    ========================= */
+    ======================================= */
     const token = localStorage.getItem("findbackToken");
     if (!token) {
       window.location.replace("/");
     }
 
-    // Populate user from local cache
+    // Populate user cached profile
     const cachedUserStr = localStorage.getItem("findbackUser");
     if (cachedUserStr) {
       try {
         const cachedUser = JSON.parse(cachedUserStr);
-        if (cachedUser && cachedUser.name) {
-          document.getElementById("headerUserName").textContent = cachedUser.name;
-          if (!document.getElementById("contactName").value) {
+        if (cachedUser) {
+          if (cachedUser.name) {
+            document.getElementById("headerUserName").textContent = cachedUser.name;
+            document.getElementById("composerAvatar").textContent = cachedUser.name.charAt(0).toUpperCase();
             document.getElementById("contactName").value = cachedUser.name;
           }
-        }
-        if (cachedUser && cachedUser.email && !document.getElementById("contactEmail").value) {
-          document.getElementById("contactEmail").value = cachedUser.email;
+          if (cachedUser.email) {
+            document.getElementById("contactEmail").value = cachedUser.email;
+          }
+          if (cachedUser.phone) {
+            document.getElementById("contactPhone").value = cachedUser.phone;
+          }
         }
       } catch (e) {}
     }
 
-    // Verify token with backend
     async function verifySession() {
       if (!token) return;
       try {
@@ -1142,12 +1634,17 @@
         if (data && data.user) {
           localStorage.setItem("findbackUser", JSON.stringify(data.user));
           document.getElementById("headerUserName").textContent = data.user.name;
+          document.getElementById("composerAvatar").textContent = data.user.name.charAt(0).toUpperCase();
           if (!document.getElementById("contactName").value) {
             document.getElementById("contactName").value = data.user.name;
           }
           if (!document.getElementById("contactEmail").value) {
             document.getElementById("contactEmail").value = data.user.email;
           }
+          if (!document.getElementById("contactPhone").value && data.user.phone) {
+            document.getElementById("contactPhone").value = data.user.phone;
+          }
+          updateLivePreview();
         }
       } catch (err) {}
     }
@@ -1162,67 +1659,181 @@
       window.location.replace("/");
     }
 
-    /* =========================
-       COMPOSER TOGGLE
-    ========================= */
-    function toggleComposer() {
-      const card = document.getElementById("postComposerCard");
-      if (card.style.display === "none") {
-        card.style.display = "block";
-        card.scrollIntoView({ behavior: "smooth" });
+    function scrollToComposer() {
+      const el = document.getElementById("composerSection");
+      el.scrollIntoView({ behavior: "smooth" });
+      document.getElementById("title").focus();
+    }
+
+    function toggleComposerCollapse() {
+      const body = document.getElementById("composerBody");
+      const presets = document.getElementById("presetsContainer");
+      const btn = document.getElementById("toggleCollapseBtn");
+      if (body.style.display === "none") {
+        body.style.display = "grid";
+        presets.style.display = "block";
+        btn.textContent = "− Minimize";
       } else {
-        card.style.display = "none";
+        body.style.display = "none";
+        presets.style.display = "none";
+        btn.textContent = "+ Open Creator";
       }
     }
 
-    function openComposer() {
-      const card = document.getElementById("postComposerCard");
-      card.style.display = "block";
-      card.scrollIntoView({ behavior: "smooth" });
+    /* =======================================
+       POST TYPE SELECTOR (Lost vs Found)
+    ======================================= */
+    function setPostType(type) {
+      document.getElementById("type").value = type;
+      const lostBtn = document.getElementById("typePillLost");
+      const foundBtn = document.getElementById("typePillFound");
+      const prevBadge = document.getElementById("prevBadge");
+
+      if (type === "lost") {
+        lostBtn.className = "type-pill-btn active-lost";
+        foundBtn.className = "type-pill-btn";
+        prevBadge.className = "ig-badge-lost";
+        prevBadge.innerHTML = '<span class="pulse-dot"></span> LOST';
+      } else {
+        lostBtn.className = "type-pill-btn";
+        foundBtn.className = "type-pill-btn active-found";
+        prevBadge.className = "ig-badge-found";
+        prevBadge.innerHTML = '✓ FOUND';
+      }
+      updateLivePreview();
     }
 
-    /* =========================
-       PHOTO PREVIEW & SELECTION
-    ========================= */
-    const imageInput = document.getElementById("imageInput");
-    const previewContainer = document.getElementById("previewContainer");
-    const previewImg = document.getElementById("previewImg");
-    const dropzoneBox = document.getElementById("dropzoneBox");
-    const imageUrlInput = document.getElementById("imageUrl");
+    /* =======================================
+       APPLY 1-CLICK EXAMPLE PRESET
+    ======================================= */
+    function applyPreset(key) {
+      const preset = PRESET_EXAMPLES[key];
+      if (!preset) return;
 
+      // Mark pill active
+      document.querySelectorAll(".preset-pill").forEach(p => p.classList.remove("active"));
+      if (event && event.currentTarget) {
+        event.currentTarget.classList.add("active");
+      }
+
+      document.getElementById("title").value = preset.title;
+      document.getElementById("category").value = preset.category;
+      document.getElementById("location").value = preset.location;
+      document.getElementById("dateLost").value = preset.dateLost;
+      document.getElementById("reward").value = preset.reward;
+      document.getElementById("description").value = preset.description;
+      setPostType(preset.type);
+
+      // Set preset photo
+      currentUploadedImageDataUri = preset.image;
+      document.getElementById("imageInput").value = "";
+      document.getElementById("imageUrl").value = "";
+      document.getElementById("photoStatusRow").style.display = "flex";
+
+      updateLivePreview();
+      showToast(`Loaded ${preset.title} format! 📝`);
+    }
+
+    function clearFormToBlank() {
+      document.querySelectorAll(".preset-pill").forEach(p => p.classList.remove("active"));
+      document.getElementById("title").value = "";
+      document.getElementById("category").value = "";
+      document.getElementById("location").value = "";
+      document.getElementById("dateLost").value = "";
+      document.getElementById("reward").value = "";
+      document.getElementById("description").value = "";
+      clearSelectedPhoto();
+      updateLivePreview();
+      showToast("Form reset to blank");
+    }
+
+    /* =======================================
+       PHOTO HANDLING
+    ======================================= */
+    const imageInput = document.getElementById("imageInput");
     imageInput.addEventListener("change", function () {
       if (this.files && this.files[0]) {
         const file = this.files[0];
         const reader = new FileReader();
         reader.onload = function (e) {
-          previewImg.src = e.target.result;
-          previewContainer.style.display = "block";
-          dropzoneBox.style.display = "none";
+          currentUploadedImageDataUri = e.target.result;
+          document.getElementById("photoStatusRow").style.display = "flex";
+          updateLivePreview();
+          showToast("Photo attached to Instagram post 📸");
         };
         reader.readAsDataURL(file);
       }
     });
 
-    imageUrlInput.addEventListener("input", function() {
-      const url = this.value.trim();
+    function handleImageUrlInput() {
+      const url = document.getElementById("imageUrl").value.trim();
       if (url && (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("data:image/"))) {
-        previewImg.src = url;
-        previewContainer.style.display = "block";
-        dropzoneBox.style.display = "none";
+        currentUploadedImageDataUri = url;
+        document.getElementById("photoStatusRow").style.display = "flex";
+        updateLivePreview();
       }
-    });
+    }
 
     function clearSelectedPhoto() {
       imageInput.value = "";
-      imageUrlInput.value = "";
-      previewImg.src = "";
-      previewContainer.style.display = "none";
-      dropzoneBox.style.display = "block";
+      document.getElementById("imageUrl").value = "";
+      currentUploadedImageDataUri = null;
+      document.getElementById("photoStatusRow").style.display = "none";
+      updateLivePreview();
     }
 
-    /* =========================
+    /* =======================================
+       UPDATE LIVE INSTAGRAM POST PREVIEW
+    ======================================= */
+    function updateLivePreview() {
+      const title = document.getElementById("title").value.trim() || "Item Title Here";
+      const category = document.getElementById("category").value.trim() || "GENERAL";
+      const location = document.getElementById("location").value.trim() || "Location";
+      const description = document.getElementById("description").value.trim() || "Detailed item description will appear here...";
+      const contactName = document.getElementById("contactName").value.trim() || "Your Name";
+      const contactPhone = document.getElementById("contactPhone").value.trim() || "+1 555-0000";
+      const reward = document.getElementById("reward").value.trim();
+
+      document.getElementById("prevTitle").textContent = title;
+      document.getElementById("prevCategoryTag").textContent = category.toUpperCase();
+      document.getElementById("prevLocation").textContent = "📍 " + location;
+      document.getElementById("prevLocChip").textContent = "📍 " + location;
+      document.getElementById("prevDescription").textContent = description;
+      document.getElementById("prevAuthorName").textContent = contactName;
+      document.getElementById("prevCaptionAuthor").textContent = contactName;
+      document.getElementById("prevAuthorAvatar").textContent = contactName.charAt(0).toUpperCase();
+      document.getElementById("prevContactText").textContent = `${contactName} (${contactPhone})`;
+
+      const cleanCat = category.replace(/[^a-zA-Z0-9]/g, '');
+      document.getElementById("prevHashtag").textContent = `#Lost${cleanCat || 'Item'}`;
+
+      // Image
+      const prevImg = document.getElementById("prevImg");
+      const prevPlaceholder = document.getElementById("prevPlaceholder");
+      if (currentUploadedImageDataUri) {
+        prevImg.src = currentUploadedImageDataUri;
+        prevImg.style.display = "block";
+        prevPlaceholder.style.display = "none";
+      } else {
+        prevImg.style.display = "none";
+        prevPlaceholder.style.display = "flex";
+        document.getElementById("prevPlaceholderTitle").textContent = title;
+        document.getElementById("prevPlaceholderTag").textContent = category;
+      }
+
+      // Reward badge
+      const rewardBadge = document.getElementById("prevRewardBadge");
+      if (reward) {
+        rewardBadge.style.display = "flex";
+        document.getElementById("prevRewardText").textContent = reward;
+      } else {
+        rewardBadge.style.display = "none";
+      }
+    }
+
+    /* =======================================
        LIKE COUNTERS (Local State)
-    ========================= */
+    ======================================= */
     function getLikedItems() {
       try {
         return JSON.parse(localStorage.getItem("findbackLikes") || "{}");
@@ -1243,18 +1854,20 @@
         let currentCount = parseInt(countSpan.textContent, 10) || 0;
         if (isLiked) {
           btn.classList.add("liked");
+          btn.querySelector("span:first-child").textContent = "❤️";
           countSpan.textContent = currentCount + 1;
-          showToast("Added to your liked posts ❤️");
+          showToast("Added to your liked items ❤️");
         } else {
           btn.classList.remove("liked");
+          btn.querySelector("span:first-child").textContent = "🤍";
           countSpan.textContent = Math.max(0, currentCount - 1);
         }
       }
     }
 
-    /* =========================
+    /* =======================================
        SHARE POST
-    ========================= */
+    ======================================= */
     function sharePost(itemId, title) {
       const url = window.location.origin + "/home.html?item=" + itemId;
       if (navigator.clipboard) {
@@ -1268,9 +1881,9 @@
       }
     }
 
-    /* =========================
+    /* =======================================
        TOAST HELPER
-    ========================= */
+    ======================================= */
     let toastTimer = null;
     function showToast(text) {
       const toast = document.getElementById("toastMsg");
@@ -1282,9 +1895,9 @@
       }, 2500);
     }
 
-    /* =========================
+    /* =======================================
        LIGHTBOX VIEWER
-    ========================= */
+    ======================================= */
     function openLightbox(imgSrc) {
       if (!imgSrc) return;
       document.getElementById("lightboxImg").src = imgSrc;
@@ -1303,9 +1916,9 @@
       }
     });
 
-    /* =========================
-       RELATIVE TIME HELPER
-    ========================= */
+    /* =======================================
+       RELATIVE TIME
+    ======================================= */
     function formatRelativeTime(dateStr) {
       if (!dateStr) return "Just now";
       const past = new Date(dateStr).getTime();
@@ -1321,27 +1934,29 @@
       return new Date(dateStr).toLocaleDateString();
     }
 
-    /* =========================
-       DISPLAY ITEMS AS INSTAGRAM POSTS
-    ========================= */
+    /* =======================================
+       RENDER POSTS IN INSTAGRAM FORMAT
+    ======================================= */
     function displayItems(items) {
       const feed = document.getElementById("itemsFeed");
       const feedCount = document.getElementById("feedCountText");
 
       if (!items || items.length === 0) {
-        feedCount.textContent = "0 Posts";
+        feedCount.innerHTML = "<span>📸</span> 0 Community Posts";
         feed.innerHTML = `
           <div class="empty-feed">
             <div class="empty-icon">📷</div>
             <h3>No Posts Found</h3>
-            <p>No lost or found items reported yet. Be the first to share an item with photo!</p>
-            <button type="button" class="hero-action-btn" onclick="openComposer()">+ Create First Post</button>
+            <p>No lost or found items reported yet. Choose one of the preset examples above or upload a photo to create the first community post!</p>
+            <button type="button" class="btn-create-post" onclick="scrollToComposer()" style="margin: 0 auto;">
+              + Create First Post
+            </button>
           </div>
         `;
         return;
       }
 
-      feedCount.textContent = `${items.length} Community ${items.length === 1 ? 'Post' : 'Posts'}`;
+      feedCount.innerHTML = `<span>📸</span> ${items.length} Community ${items.length === 1 ? 'Post' : 'Posts'}`;
       const likedItems = getLikedItems();
 
       feed.innerHTML = items.map(item => {
@@ -1352,12 +1967,13 @@
         const isLiked = !!likedItems[itemId];
         const cleanPhone = (item.contactPhone || "").replace(/[^0-9+]/g, "");
 
-        // Build Instagram image or styled visual banner
+        // Build image or placeholder
         let imageHtml = "";
         if (item.image) {
           imageHtml = `
             <div class="ig-image-container" onclick="openLightbox('${item.image}')">
               <img src="${item.image}" class="ig-post-image" alt="${item.title || 'Item image'}" loading="lazy">
+              ${item.reward ? `<div class="ig-reward-overlay"><span>🎁</span> ${item.reward}</div>` : ""}
               <div class="ig-image-overlay">🔍 Tap to expand</div>
             </div>
           `;
@@ -1369,9 +1985,13 @@
                 <div class="placeholder-title">${item.title || 'Item Reported'}</div>
                 <div class="placeholder-tag">No Photo Attached &bull; ${item.category || 'General'}</div>
               </div>
+              ${item.reward ? `<div class="ig-reward-overlay"><span>🎁</span> ${item.reward}</div>` : ""}
             </div>
           `;
         }
+
+        const catHashtag = (item.category || "Item").replace(/[^a-zA-Z0-9]/g, '');
+        const locHashtag = (item.location || "Nearby").replace(/[^a-zA-Z0-9]/g, '');
 
         return `
           <article class="ig-card" id="card-${itemId}">
@@ -1397,13 +2017,13 @@
               <div>
                 ${
                   isLost
-                    ? `<span class="ig-badge-lost"><span class="pulse-dot"></span> LOST</span>`
-                    : `<span class="ig-badge-found">✓ FOUND</span>`
+                    ? `<span class="ig-badge-lost"><span class="pulse-dot"></span> LOST ITEM</span>`
+                    : `<span class="ig-badge-found">✓ FOUND ITEM</span>`
                 }
               </div>
             </div>
 
-            <!-- 2. VISIBLE INSTAGRAM POST IMAGE -->
+            <!-- 2. INSTAGRAM IMAGE -->
             ${imageHtml}
 
             <!-- 3. ACTIONS ROW -->
@@ -1438,14 +2058,18 @@
               </div>
 
               <div class="ig-tags-row">
-                <span class="ig-tag-chip">#${(item.category || "item").replace(/\s+/g, '')}</span>
+                <span class="ig-tag-chip">#Lost${catHashtag}</span>
+                <span class="ig-tag-chip">#${locHashtag}</span>
+                <span class="ig-tag-chip">#HelpFind</span>
                 <span class="ig-loc-chip">📍 ${item.location || "Unspecified"}</span>
+                ${item.reward ? `<span class="ig-reward-chip">🎁 ${item.reward}</span>` : ""}
+                ${item.dateLost ? `<span class="ig-loc-chip">🕒 ${item.dateLost}</span>` : ""}
               </div>
 
               <!-- 5. CONTACT BUTTONS -->
               <div class="ig-contact-box" id="contact-box-${itemId}">
                 <div class="ig-contact-left">
-                  Contact: <strong>${item.contactName || "Owner/Finder"}</strong>
+                  Owner/Contact: <strong>${item.contactName || "Member"}</strong>
                 </div>
 
                 <div class="ig-contact-actions">
@@ -1456,7 +2080,7 @@
                   }
                   ${
                     cleanPhone
-                      ? `<a href="https://wa.me/${cleanPhone.replace('+', '')}?text=Hi%20${encodeURIComponent(item.contactName || '')},%20inquiring%20about%20your%20FindBack%20post:%20${encodeURIComponent(item.title || '')}" target="_blank" class="btn-contact btn-whatsapp">💬 WhatsApp</a>`
+                      ? `<a href="https://wa.me/${cleanPhone.replace('+', '')}?text=Hi%20${encodeURIComponent(item.contactName || '')},%20I%20saw%20your%20FindBack%20post%20regarding%20${encodeURIComponent(item.title || '')}:" target="_blank" class="btn-contact btn-whatsapp">💬 WhatsApp</a>`
                       : ""
                   }
                   ${
@@ -1472,16 +2096,16 @@
       }).join("");
     }
 
-    /* =========================
-       LOAD ALL ITEMS
-    ========================= */
+    /* =======================================
+       LOAD ALL POSTS
+    ======================================= */
     async function loadItems() {
       try {
         const feed = document.getElementById("itemsFeed");
         feed.innerHTML = `
           <div class="empty-feed">
             <div class="empty-icon">⏳</div>
-            <h3>Fetching Latest Posts...</h3>
+            <h3>Fetching Latest Community Posts...</h3>
           </div>
         `;
         const response = await fetch("/api/items");
@@ -1499,9 +2123,9 @@
       }
     }
 
-    /* =========================
+    /* =======================================
        SEARCH & FILTERS
-    ========================= */
+    ======================================= */
     async function searchItems() {
       const search = document.getElementById("search").value.trim();
       const type = document.getElementById("filterType").value;
@@ -1538,9 +2162,9 @@
       loadItems();
     }
 
-    /* =========================
-       PUBLISH NEW POST
-    ========================= */
+    /* =======================================
+       PUBLISH NEW POST TO FEED
+    ======================================= */
     document.getElementById("itemForm").addEventListener("submit", async function (event) {
       event.preventDefault();
 
@@ -1559,19 +2183,18 @@
       formData.append("category", document.getElementById("category").value.trim());
       formData.append("location", document.getElementById("location").value.trim());
       formData.append("type", document.getElementById("type").value);
+      formData.append("reward", document.getElementById("reward").value.trim());
+      formData.append("dateLost", document.getElementById("dateLost").value.trim());
       formData.append("contactName", document.getElementById("contactName").value.trim());
       formData.append("contactEmail", document.getElementById("contactEmail").value.trim());
       formData.append("contactPhone", document.getElementById("contactPhone").value.trim());
 
-      // Check uploaded file or image URL
+      // Image file or data URI
       const fileInput = document.getElementById("imageInput");
       if (fileInput.files && fileInput.files.length > 0) {
         formData.append("image", fileInput.files[0]);
-      } else {
-        const urlVal = document.getElementById("imageUrl").value.trim();
-        if (urlVal) {
-          formData.append("imageUrl", urlVal);
-        }
+      } else if (currentUploadedImageDataUri) {
+        formData.append("imageUrl", currentUploadedImageDataUri);
       }
 
       try {
@@ -1586,21 +2209,19 @@
         const data = await safeParseJson(response);
 
         if (response.ok && data) {
-          message.textContent = "Post published successfully! 🎉";
+          message.textContent = "Instagram post published successfully! 🎉";
           message.style.background = "#d1fae5";
           message.style.color = "#065f46";
 
-          document.getElementById("itemForm").reset();
-          clearSelectedPhoto();
           submitBtn.disabled = false;
 
-          // Hide composer after 1s and refresh feed
           setTimeout(() => {
             message.style.display = "none";
-            document.getElementById("postComposerCard").style.display = "none";
             loadItems();
             showToast("Your post is now live on the feed!");
-          }, 800);
+            // Scroll down to the feed
+            document.getElementById("itemsFeed").scrollIntoView({ behavior: "smooth" });
+          }, 600);
         } else {
           submitBtn.disabled = false;
           message.textContent = (data && data.message) ? data.message : "Failed to publish post.";
@@ -1615,7 +2236,10 @@
       }
     });
 
-    // Initial load
+    // Default initialization: pre-load the Lost Phone preset so user sees the format immediately!
+    applyPreset('phone');
+
+    // Initial feed fetch
     loadItems();
   </script>
 </body>

@@ -57,6 +57,18 @@ const itemSchema = new mongoose.Schema(
       trim: true,
     },
 
+    reward: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+
+    dateLost: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+
     status: {
       type: String,
       enum: ["active", "resolved"],

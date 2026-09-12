@@ -138,7 +138,9 @@ router.post(
         type,
         contactName,
         contactEmail,
-        contactPhone
+        contactPhone,
+        reward,
+        dateLost
       } = req.body;
 
       if (
@@ -178,7 +180,9 @@ router.post(
             image: image,
             contactName: contactName.trim(),
             contactEmail: contactEmail.trim().toLowerCase(),
-            contactPhone: contactPhone.trim()
+            contactPhone: contactPhone.trim(),
+            reward: reward ? String(reward).trim() : "",
+            dateLost: dateLost ? String(dateLost).trim() : ""
           });
 
           return res.status(201).json({
@@ -202,6 +206,8 @@ router.post(
         contactName: contactName.trim(),
         contactEmail: contactEmail.trim().toLowerCase(),
         contactPhone: contactPhone.trim(),
+        reward: reward ? String(reward).trim() : "",
+        dateLost: dateLost ? String(dateLost).trim() : "",
         status: "active",
         createdAt: new Date().toISOString()
       });
